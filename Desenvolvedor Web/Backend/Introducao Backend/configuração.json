@@ -1,0 +1,2 @@
+ "dev": "nodemon src/server.js" // rodar o nodemon com 
+npm run dev

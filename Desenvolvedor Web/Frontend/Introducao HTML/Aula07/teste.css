@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Playfair Display", serif;
+    list-style: none;
+}
+
+body {
+    background: linear-gradient(to left, #1e3c72, #2a5298);
+
+}
+
+.a {
+    padding: 100px;
+    margin: 20px;
+}
+
+.b {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.2px);
+    -webkit-backdrop-filter: blur(2.2px);
+    border: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+a {
+    font-size: 25px;
+    color: white;
+}
+a:hover{
+    color: black;
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 5px;
+}
+
+ul {
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+}
+
+.b:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+li{
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+p{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.c{
+    padding:5px;
+    margin: 10px;
+}
+.d{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.2px);
+    -webkit-backdrop-filter: blur(2.2px);
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    font-size: 20px;
+    color: white;
+}
+
+.e{
+ padding:5px;
+    margin: 10px;
+}
+.f{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.2px);
+    -webkit-backdrop-filter: blur(2.2px);
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    font-size: 20px;
+    color: white;
+}

@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    background: url("./d.png");
+    background-size: cover;
+}
+
+h1 {
+    font-size: 35px;
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+}
+
+img {
+    height: 350px;
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+
+li {
+    font-size: 25px;
+    font-weight: bolder;
+    gap: 20px;
+}
+
+ul {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    color: white;
+    margin: 2px 2px 2px;
+}
+
+ul li:hover {
+    color: black;
+    font-weight: bolder;
+    background: rgba(255, 255, 255, 0.21);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 250px;
+    border-radius: 7px;
+    cursor: pointer;
+    color: white;
+}
+
+.a {
+    padding: 100px;
+}
+
+.b {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.21);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.b:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+p {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.b:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#res {
+    font-size: 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+
+input {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+button,
+input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2,
+h3 {
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 25px;
+    color: beige;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5 - Botão com Estilo Dinâmico</title>
+    <script src="Aula02.js"></script>
+</head>
+<body>
+    <style>
+        /* Classe para o modo claro (default) */
+        body.claro {
+            background-color: white;
+            color: black;
+        }
+
+        /* Classe para o modo escuro */
+        body.escuro {
+            background-color: black;
+            color: white;
+        }
+
+        /* Estilo do botão */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+    <button onclick="mudartema()">Mudar Tema</button>
+</body>
+</html>

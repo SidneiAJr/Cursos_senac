@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="space">
+            <div class="display">
+                <h1>Pokedex</h1>
+                <form action="">
+                    <input type="text" id="nome_pokemon" placeholder="Nome Pokemon">
+                    <input type="text" id="tipo_pokemon" placeholder="Tipo Pokemon">
+                    <input type="text" id="tem_evolucao" placeholder="Tem evolucao">
+                    <input type="number" id="id" placeholder="id">
+                </form>
+                <button class="add" onclick="addpok()"><img width="20" height="20"
+                        src="https://img.icons8.com/ios/50/add--v1.png" alt="add--v1" />Adicionar</button>
+                <button class="exc" onclick="deletarPokemon()"><img width="20" height="20" src="https://img.icons8.com/carbon-copy/100/filled-trash.png" alt="filled-trash"/>Excluir</button>
+                <button class="list" onclick="obterUsuarios()"><img width="20" height="20"
+                        src="https://img.icons8.com/ios/50/ingredients-list.png"
+                        alt="ingredients-list" />Listar</button>
+                <button class="search" onclick="procurarPorId()"><img width="20" height="20"
+                        src="https://img.icons8.com/ios/50/search--v1.png" alt="search--v1" />Procurar ID</button>
+                <button class="search" onclick="atualizar()"><img width="20" height="20"
+                        src="https://img.icons8.com/ios/50/search--v1.png" alt="search--v1" />Atualizar</button>
+            </div>
+        </div>
+
+        <!-- Tabela para exibir os pokémons -->
+        <div id="res">
+            <table border="1" cellpadding="5" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nome do Pokémon</th>
+                        <th>Tipo do Pokémon</th>
+                        <th>Tem Evolução?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os dados dos pokémons serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+        <div class="container-pai">
+            <div id="saida">
+
+        </div>
+        </div>
+        
+
+    </main>
+    <script src="api.js"></script>
+</body>
+
+</html>

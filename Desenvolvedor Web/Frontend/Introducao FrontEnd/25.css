@@ -1,0 +1,166 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fundo Steam */
+body {
+  background: linear-gradient(#0b1e2d, #0e2335);
+  color: #c7d5e0;
+}
+
+/* Top bar */
+.top-bar {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #171a21;
+}
+
+.logo {
+  font-size: 20px;
+  color: white;
+}
+
+.sesao {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #c6d4df;
+}
+
+/* Menu Superior */
+.nav-menu {
+  padding: 12px 30px;
+}
+
+.menu-principal {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-principal li {
+  cursor: pointer;
+  transition: .2s;
+}
+
+.menu-principal li:hover {
+  color: #1a9fff;
+}
+
+/* Submenu */
+.sub-menu {
+  margin-top: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+}
+
+.sub li:hover {
+  color: #1a9fff;
+}
+
+.sub input[type="search"] {
+  margin-left: auto;
+  padding: 8px;
+  width: 280px;
+  border: none;
+  border-radius: 4px;
+  background: #0f273d;
+  color: white;
+}
+
+/* Conteúdo */
+.container {
+  padding: 40px;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.09);
+border-radius: 5px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Destaques */
+.destaque-area {
+  display: flex;
+  gap: 20px;
+}
+
+.destaque-principal img {
+  width: 720px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px #000;
+}
+
+/* Info Jogo */
+.info-game {
+  margin-top: 10px;
+}
+
+.tag.gratuito {
+  display: inline-block;
+  padding: 5px 12px;
+  background: #1b2838;
+  border: 1px solid #66c0f4;
+  color: #66c0f4;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+/* Thumbnails */
+.destaque-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.destaque-lateral img {
+  width: 260px;
+  height: 90px;
+  border-radius: 5px;
+  object-fit: cover;
+  transition: transform .2s ease-in-out;
+  border: 1px solid #000;
+}
+
+.destaque-lateral img:hover {
+  transform: scale(1.05);
+}
+
+/* Rodapé */
+.rodape {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  background: #171a21;
+  color: #c7d5e0;
+  opacity: 0.7;
+}
