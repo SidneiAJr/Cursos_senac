@@ -1,0 +1,9 @@
+1- Almocei
+2- Coloquei a roupa
+3- Coloquei meu sapato
+4- Caminhei ate o senac
+5- Entrei no senac
+6- Entrei na sala de aula
+7- Sentei na cadeira
+8- Liguei o computador
+

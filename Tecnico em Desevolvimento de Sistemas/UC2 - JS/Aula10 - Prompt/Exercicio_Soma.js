@@ -1,0 +1,12 @@
+const prompt = require('prompt-sync')() // Importa o promp-sync para converter para prompt
+let n1 = Number(prompt("Insira o Numero: "))
+let n2 = Number(prompt("Insira o Numero: "))
+let n3 = parseFloat(prompt("Insira um numero: "))
+let soma = (n1+n2+n3)
+let divisao = (n1/n2)
+let subtracao = (n1-n2)
+let Multiplica = (n1*n2)
+console.log(`Soma :${soma}`)
+console.log(`Divisão: ${divisao}`)
+console.log(`Subtraçao :${subtracao}`)
+console.log(`Multiplicaçao :${Multiplica}`)

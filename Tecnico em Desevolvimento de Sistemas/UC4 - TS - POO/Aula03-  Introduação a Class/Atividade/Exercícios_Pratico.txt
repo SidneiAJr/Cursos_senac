@@ -1,0 +1,4 @@
+1- Pesquise e traga 2 exemplos da vida real que poderiam ser representados como classes em POO.
+Poderia ser o caso de predio e casa, seria, cor, altura, largura
+2- Compare POO com Programação Funcional: quais as principais diferenças? classe proteção, herança e outros
+3- Dê exemplos de linguagens que usam fortemente POO: Java C# c++ Typescript
