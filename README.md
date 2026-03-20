@@ -1,6 +1,6 @@
 # 🎮 Repositório | Cursos Senac
 
-Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos do **Senac**.
+Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos do ``**Senac**``.
 
 ---
 
