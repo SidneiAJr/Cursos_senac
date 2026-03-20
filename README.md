@@ -25,6 +25,12 @@ Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos 
 - Estruturas de controle, funções e arrays
 - Exercícios e exemplos comentados
 
+### Tecnico em Desevolvimento de Sistemas
+- POO
+- Fundamentos da linguagem
+- Estruturas de controle, funções e arrays
+- Exercícios e exemplos comentados
+
 ---
 
 ## 🛠️ Tecnologias utilizadas
@@ -34,6 +40,7 @@ Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos 
 - Blender
 - Maya
 - HTML / CSS (quando necessário)
+- Typescript , Java , Javascript
 
 ---
 
