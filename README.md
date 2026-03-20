@@ -25,7 +25,7 @@ Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos 
 - Estruturas de controle, funções e arrays
 - Exercícios e exemplos comentados
 
-### 🧠 Tecnico em Desevolvimento de Sistemas
+### 🧠 Tecnico em Desenvolvimento de Sistemas
 - POO
 - Fundamentos da linguagem
 - Estruturas de controle, funções e arrays
