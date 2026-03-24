@@ -13,8 +13,11 @@ npm install --save-dev jest
 ## Criar Arquivoz | Pastas:
 
 ```bash
+# Criar Pasta Mãe:
+Pasta src/
 # Pasta config
 arquivo: database.ts
-# Arquivo de Servidor TS
+# Arquivo de Servidor TS | Forda config
 arquivo: server.ts
+# Arquivo 
 ```
