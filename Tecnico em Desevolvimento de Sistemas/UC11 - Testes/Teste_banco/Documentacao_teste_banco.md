@@ -14,7 +14,7 @@ npm install --save-dev jest
 
 ```
 
-## Criar Arquivoz | Pastas:
+## Criar Arquivos | Pastas:
 
 ```bash
 # Criar Pasta Mãe:
