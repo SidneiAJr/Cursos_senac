@@ -14,6 +14,12 @@ npm install --save-dev jest
 # Iniciar npx tsc
 npx tsc --init
 
+# depencia:
+npm install --save-dev jest ts-jest @types/jest typescript
+
+# Iniciar o Jest Test
+npx ts-jest config:init
+
 
 ```
 
