@@ -1,5 +1,7 @@
 # 📚 Documentação | Testes
 
+Iniciar Projeto com npm init -y
+
 ## 🔧 Comandos para Instalar Dependências
 
 ```bash
