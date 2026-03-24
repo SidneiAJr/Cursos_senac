@@ -19,5 +19,6 @@ Pasta src/
 arquivo: database.ts
 # Arquivo de Servidor TS | Forda config
 arquivo: server.ts
-# Arquivo 
+# Arquivo env-config.ts
+env-config.ts
 ```
