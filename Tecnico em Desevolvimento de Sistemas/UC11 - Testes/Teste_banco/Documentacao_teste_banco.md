@@ -11,6 +11,9 @@ npm install mysql2 cors express
 # Instala dependências de desenvolvimento (testes)
 npm install --save-dev jest
 
+# Iniciar npx tsc
+npx tsc --init
+
 
 ```
 
