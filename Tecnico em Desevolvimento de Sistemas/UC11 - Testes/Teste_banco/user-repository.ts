@@ -7,7 +7,7 @@ import { RequestHandler } from "express";
 export class UsuarioReposity{
      async mostrarTodos():Promise<Usuario[]>{
         const [resultado] = await conn.query<RowDataPacket[]>("SELECT * FROM minha_tabela"); 
-        return resultado.map((u) => new Usuario(u.id,u.idade,u.nome))
+        return resultado.map((u) => new Usuario(u.id,u.nome,u.idade))
      }
      async inserir(nome:string,idade:string):Promise<Usuario>{
          const [resultado2] =  await conn.execute<ResultSetHeader>("INSERT INTO minha_tabela (nome,idade) values (?,?)",[nome,idade]);
@@ -17,10 +17,10 @@ export class UsuarioReposity{
          const [resultado3] =  await conn.query<ResultSetHeader>("DELETE FROM minha_tabela WHERE id = ?",[id]);
          return resultado3;
      }
-     async update(id:Number):Promise<ResultSetHeader>{
-         const [resultado4] =  await conn.query<ResultSetHeader>("UPDATE minha_tabela SET nome = ?, idade = ? WHERE id = ?",[id]);
+     async update(id:Number,nome:string,idade:string):Promise<ResultSetHeader>{
+         const [resultado4] =  await conn.query<ResultSetHeader>("UPDATE minha_tabela SET nome = ?, idade = ? WHERE id = ?",[nome,idade,id]);
          return resultado4;
      }
 
 }
-       
+    
