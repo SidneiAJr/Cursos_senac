@@ -90,6 +90,19 @@ env-config.ts
 }
 ```
 
-# Resultado | Teste Aleatorio: 
+## Resultado | Teste Aleatorio: 
 
 <img width="446" height="210" alt="image" src="https://github.com/user-attachments/assets/6b9d86d4-eb0e-4245-b55d-545e0e596fca" />
+
+## Banco de Teste:
+
+```sql
+create database meu_banco;
+use meu_banco;
+
+create table minha_tabela(
+id int primary key auto_increment not null,
+nome varchar(50) not null,
+idade varchar(50) not null
+);
+```
