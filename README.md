@@ -78,4 +78,3 @@ Repositório dedicado aos projetos e atividades desenvolvidas durante os cursos 
 
 ---
 
-## 📁 Organização do Repositório
