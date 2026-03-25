@@ -11,10 +11,10 @@ describe("Teste de Integração de Usuario",()=>{
     })
     test("Deve criar um usuario",async()=>{
         const user = await repo.inserir("Daniel","Seis"); 
-        expect (user).not.toBeUndefined;
-        expect (user.id).not.toBeNull;
+        expect (user).not.toBeUndefined();
+        expect (user.id).not.toBeNull();
         expect (user.nome).toBe("Daniel");
-        expect (user.idade).toBe("Trinta");
+        expect (user.idade).toBe("Seis");
     })
     test("Deve Apagar um Usuario",async()=>{
         const user2 = await repo.delete(1); 
@@ -23,5 +23,8 @@ describe("Teste de Integração de Usuario",()=>{
      test("Deve fazer Update do Usuario",async()=>{
         const user3 = await repo.update(1,"Pedro Mesa","Vinte"); 
         expect (user3).not.toBeNull;
+    })
+    afterAll(async()=>{
+       await conn.end()
     })
 });
