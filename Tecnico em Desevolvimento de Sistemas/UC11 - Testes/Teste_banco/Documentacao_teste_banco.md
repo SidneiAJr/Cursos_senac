@@ -89,4 +89,7 @@ env-config.ts
   }
 }
 ```
+
+# Resultado | Teste Aleatorio: 
+
 <img width="446" height="210" alt="image" src="https://github.com/user-attachments/assets/6b9d86d4-eb0e-4245-b55d-545e0e596fca" />
