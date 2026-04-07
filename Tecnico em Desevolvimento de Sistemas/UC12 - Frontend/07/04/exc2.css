@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
+/*
+Largura 200px
+fundo cinza
+texto dentro
+sem padding
+O elemento ficou maior que 200px? Por quê? Porque soma padding + largura fica total 220px totais
+*/
+
+div{
+    width: 200px;
+    background: grey;
+    color: white;
+    font-weight: bolder;
+    padding: 20px;
+    border: 2px solid black;
+}
