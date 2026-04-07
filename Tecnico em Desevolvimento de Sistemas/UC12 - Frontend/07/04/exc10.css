@@ -27,3 +27,13 @@ button{
     border-radius: 20px;
     border: none;
 }
+
+/*
+R: Quando você define width: 30% e ainda adiciona padding e margin, o tamanho total do card ultrapassa 30% do container, porque:
+
+width = 30%
+padding = 20px (somando nas laterais)
+margin = 5px (somando nas laterais também)
+
+Se somar tudo isso, 3 cards × (30% + padding + margin) > 100%, então o último card quebra linha. Isso é exatamente o que o exercício quer que você perceba.
+*/
