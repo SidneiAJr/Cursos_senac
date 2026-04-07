@@ -1,0 +1,13 @@
+/*
+exc 4 | Qual o tamanho TOTAL da caixa? 250px
+exc 5 | Qual o tamanho agora? 220px
+
+*/
+
+
+
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+}
