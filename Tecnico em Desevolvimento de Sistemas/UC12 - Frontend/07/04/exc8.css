@@ -1,0 +1,30 @@
+.card {
+    width: 250px;           /* largura do card */
+    padding: 20px;          /* espaço interno */
+    margin: 20px;           /* espaçamento externo */
+    border: 1px solid #ccc; /* borda leve */
+    background-color: white; /* fundo branco */
+    border-radius: 8px;      /* borda arredondada opcional */
+    text-align: center;      /* centralizar texto opcional */
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 15px;
+}
+
+.card button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
