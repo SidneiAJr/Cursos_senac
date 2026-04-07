@@ -1,0 +1,8 @@
+/*
+Por que isso não funciona sem width?Mas tem uma condição: isso funciona apenas em elementos de bloco com largura definida (width)
+*/
+
+.box{
+    margin: 0 auto;
+    background-color: red;
+}
