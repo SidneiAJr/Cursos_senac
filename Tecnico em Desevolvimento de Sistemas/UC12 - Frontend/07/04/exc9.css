@@ -1,0 +1,22 @@
+/*
+explique o problema?
+corrija sem remover propriedades
+- Por padrão, o width define somente o conteúdo, não inclui padding nem border.
+- Aqui: width = 200px + padding 30px (esquerda + direita = 60px) + border 10px (esquerda + direita = 20px) → largura total = 280px, maior que 200px.
+
+*/
+
+/*
+.box {
+    width: 200px;
+    padding: 30px;
+    border: 10px solid black;
+}
+*/
+
+.box {
+    width: 200px;
+    padding: 30px;
+    border: 10px solid black;
+    box-sizing: border-box; /* faz width incluir padding e border */
+}
