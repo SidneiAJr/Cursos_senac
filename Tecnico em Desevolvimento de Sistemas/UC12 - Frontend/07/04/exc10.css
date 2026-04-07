@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+   background: linear-gradient(to left, #ff2d95, #6a0dad, #1e90ff);
+}
+.main{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* ou qualquer valor que quiser */
+}
+
+.card,.card2,.card3{
+   width: 30%;
+   margin: 5px;
+   padding: 20px;
+   color: white;
+   font-weight: bolder;
+   background: rgba(0,0,0,0.3);
+   border-radius: 20px;
+}
+
+button{
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+}
