@@ -1,0 +1,135 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: black;
+}
+
+.box1{
+    display: flex;
+    background-color: cadetblue;
+}
+
+.box2{
+    display: block;
+    background-color: red;
+}
+
+.box3{
+    display: inline;
+    background-color: blueviolet;
+    color: white;
+}
+.box4{
+    display: inline-block;
+    background-color: blueviolet;
+    color: white;
+}
+.box5{
+    display: none;
+    background-color: blue;
+    color: white;
+}
+
+.ex1{
+   background-color: aquamarine;
+}
+.ex21{
+   background-color: cornflowerblue;
+   width: 200px;
+}
+.ex22{
+   background-color:darkcyan;
+   width: 200px;
+}
+.ex3{
+    color: white;
+    background-color: darkgreen;
+}
+.ex4{
+    display: inline-block;
+    width: 200px;
+    color: white;
+    background-color: orange;
+}
+.a{
+    background-color: red;
+}
+.b{
+    background-color: red;
+}
+
+.exc5{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+}
+
+
+
+.ex6{
+     background-color: green;
+}
+.ex61{
+display: flex;
+width: 150px;
+height: 80px;
+background: gray;
+color: white;
+font-weight: bolder;
+}
+.ex62{
+display: block;
+width: 150px;
+height: 80px;
+background: orangered;
+color: white;
+}
+.ex63{
+display: inline-block;
+width: 150px;
+height: 80px;
+background: olivedrab;
+color: white;
+}
+h3{
+    color: white;
+}
+.ex7{
+  /*display: none;*/
+  visibility: hidden;
+  color: white;
+}
+.ex8{
+    display: inline-block;
+    background-color: burlywood;
+}
+a{
+    color: white;
+}
+h1{
+    color: white;
+}
+.ex9{
+ background-color: brown;
+}
+
+.ex9 a{
+  width: 200px;
+  background: gray;
+}
+
+.ex10{
+  width: 300px; /* Largura fixa */
+  padding: 20px; /* Padding interno */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.content {
+  display: flex; /* Para alinhar o texto e o botão lado a lado */
+  justify-content: space-between; /* Garante que o texto e o botão fiquem separados */
+  align-items: center; /* Alinha o conteúdo verticalmente */
+}
