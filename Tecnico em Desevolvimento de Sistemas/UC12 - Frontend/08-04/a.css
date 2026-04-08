@@ -74,7 +74,7 @@ body{
      background-color: green;
 }
 .ex61{
-display: flex;
+display: inline;
 width: 150px;
 height: 80px;
 background: gray;
@@ -92,7 +92,7 @@ color: white;
 display: inline-block;
 width: 150px;
 height: 80px;
-background: olivedrab;
+background: green;
 color: white;
 }
 h3{
