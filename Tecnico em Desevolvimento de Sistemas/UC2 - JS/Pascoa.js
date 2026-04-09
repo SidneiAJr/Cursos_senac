@@ -54,3 +54,20 @@ function countGreaterThanTen(numbers) {
 
 
 console.log(countGreaterThanTen([5, 12, 8, 20, 3]));
+
+// Desafio 4 | Pascoa
+
+function average(numbers) {
+    let total = 1;
+
+
+    numbers.forEach(n => {
+        total += n;
+    });
+
+
+    return total / numbers.length;
+}
+
+
+console.log(average([10, 10, 10]));
