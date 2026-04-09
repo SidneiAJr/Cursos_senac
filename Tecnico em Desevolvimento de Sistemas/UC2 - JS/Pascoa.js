@@ -71,3 +71,5 @@ function average(numbers) {
 
 
 console.log(average([10, 10, 10]));
+
+// Desafio 5 | Pascoa
