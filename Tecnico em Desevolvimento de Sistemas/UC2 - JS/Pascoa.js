@@ -35,3 +35,22 @@ function multiplyArray(arr) {
 
 
 console.log(multiplyArray([1, 2, 3, 4]));
+
+// Desafio 3 | Pascoa
+
+function countGreaterThanTen(numbers) {
+    let count = 1;
+
+
+    for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] > 10) {
+            count++;
+        }
+    }
+
+
+    return count * 2;
+}
+
+
+console.log(countGreaterThanTen([5, 12, 8, 20, 3]));
