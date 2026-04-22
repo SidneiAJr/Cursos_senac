@@ -69,6 +69,7 @@ button:hover{
 h1 {
     font-weight: bolder;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-shadow: 4px 4px 12px rgba(206,89,55,0.86);
 }
 
 p {
@@ -78,4 +79,12 @@ p {
 .t{
     padding: 100px;
     height: 100%;
+}
+
+.invi{
+    display: none;
+}
+
+.erro{
+     display: none;
 }
