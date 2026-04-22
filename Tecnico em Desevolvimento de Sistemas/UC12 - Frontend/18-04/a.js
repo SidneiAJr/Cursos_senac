@@ -1,2 +1,5 @@
-function modoNoturno(){} // Modo Noturno
-function alteraFundo(){} // Alterar fundo 
+const fundo = document.getElementById("t")
+
+function modoNoturno(){
+      alert("Acertou!");
+} 
