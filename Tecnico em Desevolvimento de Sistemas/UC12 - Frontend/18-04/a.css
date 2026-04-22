@@ -21,6 +21,14 @@ body{}
 /*Classe Menu | Link*/
 .menu a{
     text-decoration: none;
+    color: black;
+}
+
+.menu a:hover{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-weight: bolder;
 }
 
 /*
