@@ -23,6 +23,7 @@ Implementar três comportamentos em uma lista de checkboxes:
 </div>
 ```
 
+```js
 // 1. Selecionar elementos
 const list = document.getElementById('list');
 const selectAllBtn = document.getElementById('selectAllBtn');
@@ -92,3 +93,4 @@ list.addEventListener('change', (e) => {
 
 // Inicializar
 updateMasterCheckbox();
+```
