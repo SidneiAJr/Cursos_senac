@@ -95,7 +95,7 @@ elemento.style.transform = "rotate(10deg) scale(1.2) translateX(20px)"
 elemento.style.transition = "all 0.5s ease"      // animação suave
 ```
 
-##📦 Flexbox (para layouts flexíveis)
+## 📦 Flexbox (para layouts flexíveis)
 ```js
 elemento.style.display = "flex"
 elemento.style.flexDirection = "row"             // row, column, row-reverse
@@ -105,7 +105,7 @@ elemento.style.gap = "10px"                      // espaçamento entre itens
 elemento.style.flexWrap = "wrap"                 // wrap, nowrap
 ```
 
-🧱 Grid Layout
+## 🧱 Grid Layout
 ```js
 elemento.style.display = "grid"
 elemento.style.gridTemplateColumns = "1fr 1fr 1fr"  // 3 colunas iguais
@@ -113,7 +113,7 @@ elemento.style.gridTemplateRows = "100px auto"      // linhas
 elemento.style.gap = "15px"                         // espaçamento
 ```
 
-##📜 Scroll e Overflow
+## 📜 Scroll e Overflow
 ```js
 elemento.style.overflow = "auto"                 // auto, hidden, scroll, visible
 elemento.style.overflowX = "scroll"              // scroll horizontal
@@ -121,7 +121,7 @@ elemento.style.overflowY = "hidden"              // esconder vertical
 elemento.style.scrollBehavior = "smooth"         // scroll suave
 ```
 
-🖱️ Cursor e Interação
+## 🖱️ Cursor e Interação
 ```js
 elemento.style.cursor = "pointer"                // mãozinha
 elemento.style.cursor = "grab"                   // mão de arrastar
@@ -132,7 +132,7 @@ elemento.style.userSelect = "none"               // impede seleção de texto
 elemento.style.pointerEvents = "none"            // desativa clique
 ```
 
-📦 Box Shadow (sombra em caixa)
+##  📦 Box Shadow (sombra em caixa)
 ```js
 elemento.style.boxShadow = "5px 5px 10px rgba(0,0,0,0.3)"  // offset-x offset-y blur cor
 elemento.style.boxShadow = "inset 0 0 10px red"            // sombra interna
