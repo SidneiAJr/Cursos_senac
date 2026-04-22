@@ -1,5 +1,5 @@
 /*Variavel de Reset Global*/
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -8,27 +8,9 @@
 
 
 /*Atribuir Fundo para o corpo*/
-body{}
-
-/*Classe Menu | Colocar Background*/
-.menu{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 15px;
-}
-
-/*Classe Menu | Link*/
-.menu a{
-    text-decoration: none;
-    color: black;
-}
-
-.menu a:hover{
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-    font-weight: bolder;
+body {
+    background: url(https://i.redd.it/k4mmb8qi85xd1.jpeg);
+    height: 100vh;
 }
 
 /*
@@ -37,7 +19,57 @@ Falta Chamar 3 classe colocar backgorund em todas fundo estilo
 Colocar um Js pro fundo
 */
 
-.main{}
+.caixa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 50%;
+}
 
-.texto{}
+.caixa:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
+.texto {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: cadetblue;
+    color: white;
+}
+
+button:hover{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+
+h1 {
+    font-weight: bolder;
+}
+
+p {
+    font-weight: bolder;
+}
+
+.t{
+    padding: 100px;
+    height: 100%;
+}
