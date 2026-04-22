@@ -1,76 +1,63 @@
-# 😎 Introdução ao HTML | Frotend
+# 😎 Introdução ao HTML | Frontend
 
 HTML (HyperText Markup Language) é a linguagem de marcação padrão utilizada para criar páginas na web. Aqui estão alguns dos elementos mais comuns e úteis que você usará ao escrever HTML.
 
 ## Tags em HTML:
 
-***Titulos***
-- h1
+### Títulos
+- h1 (mais importante)
 - h2
 - h3
 - h4
 - h5
-- h6
+- h6 (menos importante)
 
-***Lista***
-- li
-- ul
+### Listas
+- li (item de lista)
+- ul (lista não ordenada)
 
-***div tipos***
-- class ou id -> Referenciar no css como # ou .
+### Div e referências CSS
+- class ou id → Referenciar no CSS como . (classe) ou # (id)
 
-***Parágrafos***
+### Parágrafos
 - p
 
-***strong***
-- Texto em negrito (semântico)
+### Negrito semântico
+- strong (texto em negrito com significado de importância)
 
-***imagem***
-- img: Para adicionar imagens à página.
-  ```html
-  Exemplo: <img src="imagem.jpg" alt="Descrição da imagem">.
-   ```
+### Imagem
+- img → Adiciona imagens. Atributos: src (caminho da imagem) e alt (descrição alternativa)
 
-***Tabelas***
+### Tabelas
+- table → define a tabela
+- tr → linha da tabela
+- td → célula da tabela
+- th → cabeçalho da tabela
 
-- table: Define uma tabela.
+### Formulários
+- form → agrupa campos do formulário
+- input → campo de entrada (texto, senha, botão, etc)
+- label → rótulo para o input
+- textarea → área de texto para respostas maiores
+- select → lista suspensa
+- option → opções dentro de um select
 
-- tr: Linha da tabela.
+### Elementos de Agrupamento (sem código, só explicação)
 
-- td: Célula da tabela.
+- **section**: Agrupa conteúdo relacionado dentro de uma página, como seções de um artigo ou partes de um site.
 
-- th: Cabeçalho da tabela.
+- **article**: Representa um conteúdo independente e auto-suficiente, como um post de blog, uma notícia ou um comentário.
 
-***Formulários***
+- **nav**: Usado para agrupar links de navegação principal do site (menus).
 
-- form: Para agrupar os campos do formulário.
+- **footer**: Rodapé da página. Normalmente contém informações de copyright, links para políticas, contato, etc.
 
-- input: Campo de entrada (texto, senha, botão, etc).
+- **header**: Cabeçalho da página ou de uma seção. Pode conter logotipo, título, navegação introdutória.
 
-- label: Rótulo para o input.
+- **aside**: Conteúdo relacionado ao conteúdo principal, mas que não é essencial. Ex: barras laterais, anúncios, links complementares.
 
-- textarea: Área de texto (para respostas maiores).
+- **figure**: Agrupa conteúdo visual como imagens, gráficos, códigos, com uma legenda opcional.
 
-- select: Lista suspensa.
+- **figcaption**: Fornece uma legenda explicativa para o conteúdo dentro da tag `<figure>`.
 
-- option: Opções dentro de um select.
-
-***Elementos de Agrupamento***
-
-- section: Para agrupar conteúdo relacionado (seções de um artigo, por exemplo).
-
-- article: Para indicar um conteúdo independente.
-
-- nav: Para links de navegação.
-
-- footer: Rodapé da página.
-
-- header: Cabeçalho da página.
-
-- aside: Contéudo relacionado, mas que não faz parte do conteúdo principal.
-
-- figure: Para agrupar conteúdo visual, como imagens com legendas.
-
-- figcaption: Para fornecer uma legenda a uma figura.
-
-- main: Define o conteúdo principal de uma página (boa para SEO).  
+- **main**: Define o conteúdo principal e único da página. Bom para SEO e acessibilidade. Só deve existir um por página.
