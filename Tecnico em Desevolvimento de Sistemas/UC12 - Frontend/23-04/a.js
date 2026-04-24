@@ -9,3 +9,12 @@ input.addEventListener("input",(event)=>{
     p.textContent = valor;
 })
 
+
+/* Evente com Change
+input.addEventListener("input",(event)=>{
+    const valor = event.target.value
+    titulo.textContent = valor;
+    p.textContent = valor;
+})
+*/
+
