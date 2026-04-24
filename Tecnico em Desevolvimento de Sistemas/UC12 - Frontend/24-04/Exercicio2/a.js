@@ -7,43 +7,41 @@ const btn3 = document.getElementById("btn3")
 const h1 = document.querySelector("h1")
 
 
-function removerimg(){
- btn1.addEventListener('click',()=>{
-    if(imgs.style.display==="none"){
-        imgs.style.display = "block"
-        btn1.textContent = "Esconder"  
-    }else{
-        imgs.style.display = "none"
-        btn1.textContent="Voltar"
-    }
-})
 
+function removerimg() {
+  btn1.addEventListener('click', () => {
+    if (btn1.textContent === "Esconder") {
+      imgs.classList.add('esconder'); // Esconde a imagem
+      btn1.textContent = "Voltar"; // Muda o texto do botão para "Voltar"
+    } else {
+      imgs.classList.remove('esconder'); // Mostra a imagem
+      btn1.textContent = "Esconder"; // Muda o texto do botão para "Esconder"
+    }
+  });
 }
 
-function removerimg2(){
- btn2.addEventListener('click',()=>{
-    if(img2.style.display==="none"){
-        img2.style.display = "block"
-        btn2.textContent = "Esconder"  
-    }else{
-        img2.style.display = "none"
-        btn2.textContent="Voltar"
+function removerimg2() {
+  btn2.addEventListener('click', () => {
+    if (btn2.textContent === "Esconder") {
+      img2.classList.add('esconder'); // Esconde a imagem
+      btn2.textContent = "Voltar"; // Muda o texto do botão para "Voltar"
+    } else {
+      img2.classList.remove('esconder'); // Mostra a imagem
+      btn2.textContent = "Esconder"; // Muda o texto do botão para "Esconder"
     }
-})
+  });
 }
 
 function removerimg3(){
  btn3.addEventListener('click',()=>{
-     h1.textContent = "Malphite Brabo | Exodia"
-
-    if(img3.style.display==="none"){
-        img3.style.display = "block"
-        btn3.textContent = "Esconder"  
-    }else{
-        img3.style.display = "none"
-        btn3.textContent="Voltar"
+      if (btn3.textContent === "Esconder") {
+      img3.classList.add('esconder'); // Esconde a imagem
+      btn3.textContent = "Voltar"; // Muda o texto do botão para "Voltar"
+    } else {
+      img3.classList.remove('esconder'); // Mostra a imagem
+      btn3.textContent = "Esconder"; // Muda o texto do botão para "Esconder"
     }
-})
+  });
 }
 
 removerimg()
