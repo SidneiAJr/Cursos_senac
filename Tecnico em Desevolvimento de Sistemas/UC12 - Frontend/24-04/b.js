@@ -3,12 +3,14 @@ const botaoadd = document.getElementById("add")
 const botaodelete = document.getElementById("remover")
 const botaotitulo = document.getElementById("titulo")
 const lista = document.getElementById("lista")
+const classe = document.querySelector("c")
 
 function mudatexto(){
     titulo.textContent = "Hello Word"
 }
 
 function addclass(){
+    
 }
 
 function addlista(){}
