@@ -8,8 +8,9 @@ function one(){
     texto.textContent = "Exercicio 1 | Criar um botão que muda o texto de um título | Alterado"
 }
 
-function double(){
-   classe2.classList.toggle("Ativo");
+function double() {
+    const classe2 = document.querySelector('.exc2');
+    classe2.classList.toggle("Ativo");
 }
 
 function tres(){
