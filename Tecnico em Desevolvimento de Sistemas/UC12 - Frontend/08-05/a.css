@@ -83,6 +83,7 @@ a{
     flex-direction: column;
     gap: 5px;
     font-weight: bolder;
+    transition: opacity 0.3s ease; transform: 0.3s case;
 }
 
 .menu-extra {
@@ -96,8 +97,6 @@ a{
 
 .menu-dropdown a{
     color: white;
-    transform: translateY(0);
-    transition: 3s;
 }
 
 main{
