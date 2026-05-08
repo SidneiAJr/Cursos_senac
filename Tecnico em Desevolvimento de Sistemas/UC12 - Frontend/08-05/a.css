@@ -40,7 +40,7 @@ header{
 
 a{
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 18px;
     font-weight: bolder;
 }
@@ -73,7 +73,8 @@ a{
 .menu-dropdown {
     display: none;
     position: absolute; 
-    background-color: white; 
+    background-color: black; 
+    color: white;
     padding: 10px;
     border-radius: 5px;
     width: 200px;
@@ -91,6 +92,12 @@ a{
 
 .menu-extra:hover .menu-dropdown {
     display: flex;
+}
+
+.menu-dropdown a{
+    color: white;
+    transform: translateY(0);
+    transition: 3s;
 }
 
 main{
