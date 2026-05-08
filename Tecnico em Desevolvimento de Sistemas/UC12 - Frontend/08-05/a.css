@@ -5,11 +5,11 @@
 }
 
 body{
- background: linear-gradient(to left, #33315c, #787892);
+ background: black;
 }
 
 header{
-   background-color: rgb(83, 62, 62);
+   background-color: brown;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -73,13 +73,15 @@ a{
 .menu-dropdown {
     display: none;
     position: absolute; 
-    background-color: #555; 
+    background-color: white; 
     padding: 10px;
     border-radius: 5px;
+    width: 200px;
     top: 60px; 
     right: 0;
     flex-direction: column;
     gap: 5px;
+    font-weight: bolder;
 }
 
 .menu-extra {
@@ -91,3 +93,6 @@ a{
     display: flex;
 }
 
+main{
+    color: white;
+}
