@@ -5,7 +5,7 @@
 }
 
 body{
- background: linear-gradient(to left, #2e2a7a, #787892);
+ background: linear-gradient(to left, #33315c, #787892);
 }
 
 header{
@@ -47,6 +47,8 @@ a{
 
 .logo{
   width: 100px;
+  height: 100px;
+  border-radius: 100%;
 }
 
 .img{
