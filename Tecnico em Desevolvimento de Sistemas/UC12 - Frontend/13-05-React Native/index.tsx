@@ -11,11 +11,12 @@ export default function IndexScree(){
   return(
     <View style={styles.container}>
      <Image 
-     source={require("../../assets/images/")}
+     source={require("../../assets/images/a.jpg")}
      style={styles.imagem}
      resizeMode='contain'
      />
      <Text style={styles.title}>Hydro RS | Não Rolo</Text>
+     <Text style={styles.subtitle}>Hydro RS | Não Rolo</Text>
      <CustomButtom
       title = 'Ir para Cadastro'
       onPress ={()=>router.push('/register')}
@@ -36,7 +37,10 @@ const styles = StyleSheet.create({
      marginBottom:20
   },
   subtitle:{
-    
+    fontSize:16,
+    color: '#666',
+    marginBottom: 24,
+    textAlign: 'center'
   },
   imagem:{
     width: 220,
