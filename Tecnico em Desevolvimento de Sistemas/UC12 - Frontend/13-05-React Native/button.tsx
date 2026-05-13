@@ -19,12 +19,30 @@ export default function CustomButtom({title,onPress}:props){
       onPress={onPress}
       >
       <Text style={styles.text}>
-        
+        {title} 
       </Text>
       </Pressable>
     )
       // tudo dentro do return aparece na tela e renderizado
 }
+
+//Estilos 
+const styles= StyleSheet.create({
+    button:{
+        width: '100%',
+        backgroundColor: '#252eb',
+        borderRadius :12,
+        alignItems :'center',
+        marginTop: 12
+    },
+    text:{
+        color: '#fff',
+        fontSize: 16,
+        fontWeight : '600'
+    }
+})
+
+
 
 
 
