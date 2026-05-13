@@ -10,5 +10,23 @@ Aqui Vamos criar um botão
 Assim evitamos repetir codigo varias telas
 */
 
-export default {}
+export default function CustomButtom({title,onPress}:props){
+    // cria combonpotes custombuttom
+    // recebe title e onpress atrasves das props
+    return(
+      <Pressable
+      style={styles.button}// Aplica os estilos  do botão
+      onPress={onPress}
+      >
+      <Text style={styles.text}>
+        
+      </Text>
+      </Pressable>
+    )
+      // tudo dentro do return aparece na tela e renderizado
+}
+
+
+
+
 
