@@ -9,10 +9,10 @@ export default function IndexScree(){
   return(
     <View style={styles.container}>
      <Image 
-     source={require("../../assets/images/")}>
-      style={styles.imagem}
-     resizemode='container'
-     </Image>
+     source={require("../../assets/images/")}
+     style={styles.imagem}
+     resizeMode='contain'
+     />
     </View>
   )
 }
