@@ -31,7 +31,9 @@ export default function IndexScree(){
 // Estilizando
 const styles = StyleSheet.create({
   title:{
-     
+     fontSize:20,
+     fontWeight: '700',
+     marginBottom:20
   },
   subtitle:{
     
