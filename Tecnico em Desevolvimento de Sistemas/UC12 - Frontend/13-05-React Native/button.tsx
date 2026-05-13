@@ -7,8 +7,8 @@ type props={
 
 /*
 Aqui Vamos criar um botão
-Assim vitamos repetir codigo varias telas
+Assim evitamos repetir codigo varias telas
 */
 
-export default{}
+export default {}
 
