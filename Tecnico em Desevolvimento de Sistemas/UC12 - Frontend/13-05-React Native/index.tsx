@@ -28,18 +28,25 @@ export default function IndexScree(){
   )
 }
 
+// Estilizando
 const styles = StyleSheet.create({
   title:{
-
+     
   },
   subtitle:{
-
+    
   },
   imagem:{
-
+    width: 220,
+    height: 200,
+    marginBottom: 20
   },
   container:{
-
+    flex:1,
+    backgroundColor: "#f7f8fa",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24
   }
 
 })
