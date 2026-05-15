@@ -28,7 +28,6 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    text-decoration: none;
 }
 
 header a{
@@ -39,32 +38,50 @@ header a{
 }
 
 img{
-    background-color: white;
+    cursor: pointer;
 }
 
 .hidden{
     display: none;
 }
-/*
-=======================================
-  Telas Mobile
-=======================================
-*/
 
+/* Telas Mobile */
 @media (max-width:800px){
-   .container-pai{
-    flex-direction: column;
-    height: 100vh;
-   }
-   .container-filho{
-    min-width: 30vw;
-    min-height: 30vw;
-   }
-   .hidden{
-    display: block;
-   }
-   header nav{
-    display: none;
-   }
-}
+    .container-pai{
+        flex-direction: column;
+        height: 100vh;
+    }
+    .container-filho{
+        min-width: 30vw;
+        min-height: 30vw;
+    }
+    .hidden{
+        display: block;
+        background-color: brown;
+        color: white;
+        opacity: 55%;
+        position: relative;
+    }
+    header nav{
+        display: none; 
+        background-color: brown;
+        position: absolute;
+        top: 70px; 
+        right: -5px;
+        border-radius: 10px;
+        width: 40%;
+        text-align: center;
+        padding: 20px 0;
+    }
+    header nav a{
+        display: block;
+        margin: 10px 0;
+        cursor: pointer;
+        color: white;
+    }
 
+    .hidden a{
+        cursor: pointer;
+        color: white;
+    }
+}
