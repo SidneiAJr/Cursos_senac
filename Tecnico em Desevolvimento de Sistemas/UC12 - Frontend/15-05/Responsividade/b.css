@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-pai{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    background-color: aqua;
+}
+
+.container-filho{
+    background-color: black;
+    width: 100px;
+    height: 50px;
+}
