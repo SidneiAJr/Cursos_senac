@@ -22,6 +22,17 @@ max width:600px aplica o css para teslas com largura maxima de
 }
 
 /*
+Orientarion:landscap aplica o css para telas na horizontal(quando viramos o celular)
+*/
+
+@media(orientation: landscape){
+    div{
+       background-color: yellow;
+    }
+}
+
+
+/*
 CSS que vai ser utilizado 
 quando a tlea for menor
 */
