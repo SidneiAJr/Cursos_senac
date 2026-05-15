@@ -24,6 +24,11 @@
 @media (max-width:800px){
    .container-pai{
     flex-direction: column;
+    height: 100vh;
+   }
+   .container-filho{
+    min-width: 30vw;
+    min-height: 30vw;
    }
 }
 
