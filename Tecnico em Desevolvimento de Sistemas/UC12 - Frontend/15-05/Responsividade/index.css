@@ -1,0 +1,27 @@
+/*
+Nosso CSS padrão
+*/
+div{
+    background-color: black;
+    height: 30vh;
+    color: white;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+max width:600px aplica o css para teslas com largura maxima de 
+*/
+
+@media(max-width:600px){
+    div{
+        background-color: brown;
+    }
+}
+
+/*
+CSS que vai ser utilizado 
+quando a tlea for menor
+*/
