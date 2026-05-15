@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background: white;
+}
+
+header {
+    background: rgba(182, 157, 157, 0.27);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(182, 157, 157, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+main {
+    background-color: white;
+}
+
+.info, .info2, .info3 {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    gap: 20px;           
+    align-items: center;  
+    margin: 40px 0;       
+}
+
+.info div, .info2 div, .info3 div {
+    flex-shrink: 0;      
+}
+
+.info img, .info2 img, .info3 img {
+    width: 300px;         
+    height: auto;         
+    border-radius: 8px;   
+}
+
+.info h1, .info2 h1, .info3 h1 {
+    margin-bottom: 10px;
+}
+
+.info p, .info2 p, .info3 p {
+    max-width: 600px;     
+}
+.meio {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    color: green;
+    flex-direction: column;
+}
+
+.img-princ {
+    height: 100vh; 
+    width: 100%;   
+    background-image: url("https://wanderland.qodeinteractive.com/wp-content/uploads/2019/11/h1-rev-slide1-bckg.jpg");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;      
+    align-items: center;          
+    color: white;                 
+    text-align: center;
+    padding: 0 20px;   
+}
+
+.info img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.info2 img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.info3 img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.info h1 {
+    font-weight: bolder;
+    color: white;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+}
+
+input{
+    width: 80px;
+    height: 30px;
+}
