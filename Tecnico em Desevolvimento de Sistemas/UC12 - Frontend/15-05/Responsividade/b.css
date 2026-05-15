@@ -28,6 +28,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
+    position: relative;
 }
 
 header a{
@@ -67,17 +68,20 @@ img{
         background-color: brown;
         position: absolute;
         top: 70px; 
-        right: -5px;
+        right: 15px;
         border-radius: 10px;
-        width: 40%;
+        width: 20%;
         text-align: center;
         padding: 20px 0;
+        transform: translateY(-5px);
+        transition: max-height 0.5s ease, opacity 0.5s ease , transform 0.5s ease;
     }
     header nav a{
         display: block;
         margin: 10px 0;
-        cursor: pointer;
         color: white;
+        background-color: grey;
+        border-radius: 10px;
     }
 
     .hidden a{
