@@ -21,6 +21,36 @@
     height: 50px;
 }
 
+header{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    text-decoration: none;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin: 0px 10px;
+}
+
+img{
+    background-color: white;
+}
+
+.hidden{
+    display: none;
+}
+/*
+=======================================
+  Telas Mobile
+=======================================
+*/
+
 @media (max-width:800px){
    .container-pai{
     flex-direction: column;
@@ -29,6 +59,12 @@
    .container-filho{
     min-width: 30vw;
     min-height: 30vw;
+   }
+   .hidden{
+    display: block;
+   }
+   header nav{
+    display: none;
    }
 }
 
