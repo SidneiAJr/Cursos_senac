@@ -83,6 +83,29 @@ async function VerificarCEP() {
     console.log(dados)
 }
 
+async function paises() {
+    const pais = document.getElementById("pais").value;
+    const saida5 = document.getElementById("saida5");
+    try {
+    const url = `https://restcountries.com/v3.1/name/${pais}`;
+    const resposta = await fetch(url);
+    const dados = await resposta.json()
+    const info = dados[0]
+    saida5.innerHTML=`
+    =============================<br>
+    Quinta Saida<br>
+    ${info.name.common}<br>
+    ${info.capital}<br>
+    ${info.region}<br>
+    População: ${info.population}<br>
+    =============================<br>
+    `
+    } catch (error) {
+        lert("Cidade Não encontrado!")
+        console.error(error)
+    }
+}
+
 
 
 btn.addEventListener('click' ,()=>{
@@ -90,4 +113,5 @@ btn.addEventListener('click' ,()=>{
     letJson()
     VerificarCEP()
     letJson2()
+    paises()
 })
