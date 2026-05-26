@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integração Frotnend API</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="saida"></div>
-<div id="saida2"></div>
-<div id="saida3"></div>
-<div id="saida4"></div>
-
-<div>
+<div class="container">
+    <div class="container-texto">
 <label>CEP:</label>
 <input type="text" id="cep" placeholder="ex(123456789)" maxlength="8">
 <input type="text" id="Rua" placeholder="Rua">
 <input type="text" id="Cidade" placeholder="Cidade">
 <input type="text" id="Bairro" placeholder="Cidade">
+<input type="text" placeholder="Ex(pais)" id="pais">
 <button id="btn">Verificar</button>
+<div id="saida"></div>
+<div id="saida2"></div>
+<div id="saida3"></div>
+<div id="saida4"></div>
+<div id="saida5"></div>
 </div>
+
+
+
 
 <script src="index.js"></script> 
 </body>
