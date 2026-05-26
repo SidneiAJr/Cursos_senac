@@ -59,6 +59,12 @@ async function VerificarCEP() {
     const url = "https://viacep.com.br/ws";
     const resposta = await fetch(`${url}/${cep}/json/`);
     const dados = await resposta.json();
+
+    const Rua = document.getElementById("Rua").value=dados.logradouro;
+    const Cidade = document.getElementById("Cidade").value=dados.localidade;
+    const Bairro = document.getElementById("Bairro").value=dados.bairro
+
+
     saida4.innerHTML = 
     `
     =============================<br>
