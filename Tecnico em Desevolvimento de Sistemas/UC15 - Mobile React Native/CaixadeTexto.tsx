@@ -4,7 +4,8 @@ import React from 'react'
 const CaixadeTexto = () => {
   return (
     <View>
-     <TextInput style={styles.caixa} placeholder ='Escreva seu nome'/>
+     <TextInput style={styles.caixa} placeholder ='Escreva seu nome' onChangeText={(texto)=>console.log(texto)}
+     />
     </View>
   )
 }
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         borderRadius: 30,
         width: 400,
-        height: 50
+        height: 50,
+        margin: 5
     }
 })
