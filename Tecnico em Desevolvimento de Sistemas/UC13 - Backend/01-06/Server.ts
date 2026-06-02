@@ -68,7 +68,7 @@ app.delete('/cadastro/:id', (req: Request, res: Response) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ erro: 'mensagem: "Nenhuma Linha Atualizada"' });
         }
-        res.status(204).send();
+        res.json({ mensagem: "Deletado com sucesso!" });
     });
 });
 
