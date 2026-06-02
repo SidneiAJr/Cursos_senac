@@ -42,10 +42,10 @@ app.post('/Cadastro', (req: Request, res: Response) => {
 });
 
 
-app.put('/testes/:id', (req: Request, res: Response) => {
+app.put('/cadastro/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-    const { nome, email } = req.body;
-    const sql = `UPDATE t SET nome = ?, WHERE id = ?`;
+    const { nome} = req.body;
+    const sql = `UPDATE t SET nome = ? WHERE id = ?`;
     connection.query(sql, [nome,id], (err, result) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -58,7 +58,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
 });
 
 
-app.delete('/testes/:id', (req: Request, res: Response) => {
+app.delete('/cadastro/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const sql = `DELETE FROM t WHERE id = ?`;
     connection.query(sql, [id], (err, result) => {
