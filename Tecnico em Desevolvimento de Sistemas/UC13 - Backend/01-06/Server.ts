@@ -32,15 +32,15 @@ app.get('/Lista', (req: Request, res: Response) => {
 });
 
 app.post('/Cadastro', (req: Request, res: Response) => {
-    const linhasAfetadas = result.affectedRows;  // Quantas linhas foram inseridas
-    const novoId = result.insertId;  
     const { nome } = req.body;
     const sql = `INSERT INTO t (nome) VALUES (?)`;
     connection.query(sql, [nome], (err, result) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
         }
-        res.status(201).json({ mensagem: `Quantidade de Linhas Afetadas ${linhasAfetadas} | Quantidade de Registros ${novoId}` });
+        const linhasAfetadas = result.affectedRows;  // Quantas linhas foram inseridas
+        const novoId = result.insertId;  
+        res.status(201).json({ mensagem: `Quantidade de Linhas Afetadas: ${linhasAfetadas} | Quantidade de Registros: ${novoId}` });
     });
 });
 
