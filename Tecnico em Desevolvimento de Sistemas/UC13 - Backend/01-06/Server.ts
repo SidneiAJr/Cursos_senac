@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 
 const app: Express = express();
 const PORT = 3000;
-
+app.use(express.json());     
+app.use(express.urlencoded({ extended: true })); 
 
 const connection = mysql.createConnection({ 
     host:  'localhost',
@@ -19,8 +20,8 @@ app.get('/', (req:Request, res:Response) => {
 });
 
 
-app.get('/testes', (req: Request, res: Response) => {
-    const sql = `SELECT * FROM [sua tabela aqui]`;
+app.get('/Lista', (req: Request, res: Response) => {
+    const sql = `SELECT * FROM t`;
     connection.query(sql, (err, results) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -29,10 +30,10 @@ app.get('/testes', (req: Request, res: Response) => {
     });
 });
 
-app.post('/testes', (req: Request, res: Response) => {
-    const { nome, email } = req.body;
-    const sql = `INSERT INTO [sua tabela aqui] (nome, email) VALUES (?, ?)`;
-    connection.query(sql, [nome, email], (err, result) => {
+app.post('/Cadastro', (req: Request, res: Response) => {
+    const { nome } = req.body;
+    const sql = `INSERT INTO t (nome) VALUES (?)`;
+    connection.query(sql, [nome], (err, result) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
         }
@@ -44,8 +45,8 @@ app.post('/testes', (req: Request, res: Response) => {
 app.put('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const { nome, email } = req.body;
-    const sql = `UPDATE [sua tabela aqui] SET nome = ?, email = ? WHERE id = ?`;
-    connection.query(sql, [nome, email, id], (err, result) => {
+    const sql = `UPDATE t SET nome = ?, WHERE id = ?`;
+    connection.query(sql, [nome,id], (err, result) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
         }
@@ -59,7 +60,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
 
 app.delete('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-    const sql = `DELETE FROM [sua tabela aqui] WHERE id = ?`;
+    const sql = `DELETE FROM t WHERE id = ?`;
     connection.query(sql, [id], (err, result) => {
         if (err) {
             return res.status(500).json({ erro: err.message });
