@@ -62,13 +62,15 @@ app.delete('/cadastro/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const sql = `DELETE FROM t WHERE id = ?`;
     connection.query(sql, [id], (err, result) => {
+        const linhasAfetadas = result.affectedRows;     
+        const linhasEncontradas = result.changedRows;    
         if (err) {
             return res.status(500).json({ erro: err.message });
         }
         if (result.affectedRows === 0) {
             return res.status(404).json({ erro: 'mensagem: "Nenhuma Linha Atualizada"' });
         }
-        res.json({ mensagem: "Deletado com sucesso!" });
+        res.json({ mensagem: `Deletado com sucesso | Linhas Afetadas: ${linhasAfetadas} | Linhas Encotradas ${linhasEncontradas}` });
     });
 });
 
