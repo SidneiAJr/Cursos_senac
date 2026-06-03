@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Pokemom</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container">
+    <div class="batalha">
+        <!-- Adversário -->
+        <div class="pokemon-card adversario">
+            <div class="pokemon-header">
+                <h2 id="nomeAdversario">???</h2>
+                <span class="nivel" id="nivelAdversario">Nv. 0</span>
+            </div>
+            <div class="hp-container">
+                <div class="hp-label">
+                    <span>HP</span>
+                    <span id="hpTextoAdv">0/0</span>
+                </div>
+                <div class="hp-barra">
+                    <div id="hpAdversario" class="hp"></div>
+                </div>
+            </div>
+            <div class="pokemon-img">
+                <img id="imgAdversario" src="" alt="Pokémon adversário">
+            </div>
+        </div>
+
+        <!-- Caixa de diálogo -->
+        <div id="caixaDialogo" class="dialog"></div>
+
+        <!-- Jogador -->
+        <div class="pokemon-card jogador">
+            <div class="pokemon-header">
+                <h2 id="nomeJogador">???</h2>
+                <span class="nivel" id="nivelJogador">Nv. 0</span>
+            </div>
+            <div class="hp-container">
+                <div class="hp-label">
+                    <span>HP</span>
+                    <span id="hpTextoJog">0/0</span>
+                </div>
+                <div class="hp-barra">
+                    <div id="hpJogador" class="hp"></div>
+                </div>
+            </div>
+            <div class="pokemon-img">
+                <img id="imgJogador" src="" alt="Seu Pokémon">
+            </div>
+        </div>
+
+        <!-- Menu de golpes -->
+        <div class="golpes-menu">
+            <h3>⚔️ ESCOLHA SEU GOLPE ⚔️</h3>
+            <div id="menuGolpes" class="golpes-grid"></div>
+        </div>
+
+        <!-- Busca -->
+        <div class="busca-area">
+            <h3>🔍 ESCOLHA SEU POKÉMON</h3>
+            <div class="busca-input">
+                <input type="text" id="inputPokemon" placeholder="Ex: charizard, pikachu, 25">
+                <button onclick="iniciarBatalha(document.getElementById('inputPokemon').value)">
+                    INICIAR BATALHA
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
