@@ -5,8 +5,9 @@
 }
 
 body {
-    font-family: 'Press Start 2P', 'Courier New', monospace;
-    background: linear-gradient(135deg, #1a472a 0%, #2d5a3b 100%);
+    background: url("https://assetstorev1-prd-cdn.unity3d.com/key-image/e4fba522-e852-4072-9fd1-e8497d533258.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     justify-content: center;
