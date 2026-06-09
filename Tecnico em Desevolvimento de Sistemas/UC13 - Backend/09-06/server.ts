@@ -14,16 +14,14 @@ app.get('/',(req:Request,res:Response)=>{
 })
 
 app.get('/teste', (req: Request, res: Response) => {
-    const sql = `SELECT * FROM usuarios`;
+    const sql = `SELECT COUNT(*) AS quantidade FROM usuarios`;
     pool.query(sql, (err, results) => {
         try {
-        if (err) {
-            return res.status(500).json({ erro: err.message });
-        }
         const quantidade = results.length; 
         res.json({mensagem: `Quantidade de Registros: ${quantidade}`});
         } catch (error) {
             console.error("Erro Não foi possivel consultar o Banco!")
+            return res.status(500).json({ erro: error.message });
         }
     });
 });
@@ -31,7 +29,7 @@ app.get('/teste', (req: Request, res: Response) => {
 app.post('/testes', (req: Request, res: Response) => {
     const { nome,email,senha,data_cadastro } = req.body;
     const sql = `INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES (?, ?,?,?)`;
-    pool.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
+     pool.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
         try {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -46,7 +44,7 @@ app.post('/testes', (req: Request, res: Response) => {
 });
 
 
-app.put('/testes/:id', (req: Request, res: Response) => {
+app.put('/testes/:id',(req: Request, res: Response) => {
     const { id } = req.params;
    const { nome,email,senha,data_cadastro } = req.body;
     const sql = `UPDATE usuarios SET nome = ?,  email= ?, senha=?, data_cadastro=? WHERE id = ?`;
@@ -67,7 +65,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
 });
 
 
-app.delete('/testes/:id', (req: Request, res: Response) => {
+app.delete('/testes/:id',async (req: Request, res: Response) => {
     const { id } = req.params;
     const sql = `DELETE FROM usuarios WHERE id = ?`;
     pool.query(sql, [id], (err, result) => {
