@@ -16,8 +16,13 @@ const connection = mysql.createConnection({
 
 app.use(express.json()); 
 
+app.get('/',(req:Request,res:Response)=>{
+     const nome = req.query.nome;
+    res.status(200).send(`Servidor está funcionando perfeitamente 🚀 | Seu nome é ${nome}`)
+})
+
 app.get('/teste', (req: Request, res: Response) => {
-    const sql = `SELECT * FROM teste`;
+    const sql = `SELECT * FROM usuarios`;
     connection.query(sql, (err, results) => {
         try {
         if (err) {
@@ -32,9 +37,9 @@ app.get('/teste', (req: Request, res: Response) => {
 });
 
 app.post('/testes', (req: Request, res: Response) => {
-    const { nome, idade,cidade } = req.body;
-    const sql = `INSERT INTO teste (nome, idade,cidade) VALUES (?, ?,?)`;
-    connection.query(sql, [nome,idade,cidade], (err, result) => {
+    const { nome,email,senha,data_cadastro } = req.body;
+    const sql = `INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES (?, ?,?,?)`;
+    connection.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
         try {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -51,9 +56,9 @@ app.post('/testes', (req: Request, res: Response) => {
 
 app.put('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-   const { nome, idade,cidade } = req.body;
-    const sql = `UPDATE teste SET nome = ?, idade = ?, cidade=? WHERE id = ?`;
-    connection.query(sql, [nome,idade,cidade ,id], (err, result) => {
+   const { nome,email,senha,data_cadastro } = req.body;
+    const sql = `UPDATE usuarios SET nome = ?,  email= ?, senha=?, data_cadastro=? WHERE id = ?`;
+    connection.query(sql, [nome,email,senha,data_cadastro ,id], (err, result) => {
         try {
         if (err) {
         return res.status(500).json({ erro: err.message });
@@ -72,7 +77,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
 
 app.delete('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-    const sql = `DELETE FROM teste WHERE id = ?`;
+    const sql = `DELETE FROM usuarios WHERE id = ?`;
     connection.query(sql, [id], (err, result) => {
         try {
         const linhasAfetadas = result.affectedRows;     
@@ -93,4 +98,6 @@ app.delete('/testes/:id', (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+
 
