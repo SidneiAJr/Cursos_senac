@@ -1,18 +1,11 @@
 import express, { Express, Request, Response } from 'express';
-import mysql from 'mysql2';
 import dotenv from 'dotenv';
+import { pool } from './database';
 
 const PORT = 3000;
 
 dotenv.config();
 const app: Express = express();
-
-const connection = mysql.createConnection({ 
-    host:  'localhost',
-    user:  'root',
-    password:  'root',
-    database:  'd'
-});
 
 app.use(express.json()); 
 
@@ -22,7 +15,7 @@ app.get('/',(req:Request,res:Response)=>{
 
 app.get('/teste', (req: Request, res: Response) => {
     const sql = `SELECT * FROM usuarios`;
-    connection.query(sql, (err, results) => {
+    pool.query(sql, (err, results) => {
         try {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -38,7 +31,7 @@ app.get('/teste', (req: Request, res: Response) => {
 app.post('/testes', (req: Request, res: Response) => {
     const { nome,email,senha,data_cadastro } = req.body;
     const sql = `INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES (?, ?,?,?)`;
-    connection.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
+    pool.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
         try {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -57,7 +50,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
    const { nome,email,senha,data_cadastro } = req.body;
     const sql = `UPDATE usuarios SET nome = ?,  email= ?, senha=?, data_cadastro=? WHERE id = ?`;
-    connection.query(sql, [nome,email,senha,data_cadastro ,id], (err, result) => {
+    pool.query(sql, [nome,email,senha,data_cadastro ,id], (err, result) => {
         try {
         if (err) {
         return res.status(500).json({ erro: err.message });
@@ -77,7 +70,7 @@ app.put('/testes/:id', (req: Request, res: Response) => {
 app.delete('/testes/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const sql = `DELETE FROM usuarios WHERE id = ?`;
-    connection.query(sql, [id], (err, result) => {
+    pool.query(sql, [id], (err, result) => {
         try {
         const linhasAfetadas = result.affectedRows;     
         const linhasEncontradas = result.changedRows; 
