@@ -17,8 +17,7 @@ const connection = mysql.createConnection({
 app.use(express.json()); 
 
 app.get('/',(req:Request,res:Response)=>{
-     const nome = req.query.nome;
-    res.status(200).send(`Servidor está funcionando perfeitamente 🚀 | Seu nome é ${nome}`)
+    res.status(200).send(`Servidor está funcionando perfeitamente 🚀`)
 })
 
 app.get('/teste', (req: Request, res: Response) => {
