@@ -17,7 +17,7 @@ app.get('/livros', (req: Request, res: Response) => {
     const sql = `SELECT COUNT(*) AS quantidade FROM livro`;
     pool.query(sql, (err, results) => {
         try {
-        const quantidade = results.length; 
+        const quantidade = results[0].quantidade; 
         res.json({mensagem: `Quantidade de Registros: ${quantidade}`});
         } catch (error) {
             console.error("Erro Não foi possivel consultar o Banco!")
