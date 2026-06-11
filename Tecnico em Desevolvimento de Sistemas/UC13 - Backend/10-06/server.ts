@@ -13,6 +13,7 @@ app.get('/',(req:Request,res:Response)=>{
     res.status(200).send(`Servidor está funcionando perfeitamente 🚀`)
 })
 
+// Conta os registros na tabela
 app.get('/livros', (req: Request, res: Response) => {
     const sql = `SELECT COUNT(*) AS quantidade FROM livro`;
     pool.query(sql, (err, results) => {
@@ -26,7 +27,20 @@ app.get('/livros', (req: Request, res: Response) => {
     });
 });
 
+// Seleciona todos os livros
+app.get('/listar', (req: Request, res: Response) => {
+    const sql = `SELECT * from livro`;
+    pool.query(sql, (err, results) => {
+        try {
+            return res.status(200).json(results)
+        } catch (error) {
+            console.error("Erro Não foi possivel consultar o Banco!")
+            return res.status(500).json({ erro: error.message });
+        }
+    });
+});
 
+// Insere informação
 app.post('/livros', async(req: Request, res: Response) => {
     const {nome_livro,quantidade_paginas,edicao_livro,descricao  } = req.body;
     const sql = `INSERT INTO livro(nome_livro,quantidade_paginas,edicao_livro,descricao) VALUES (?, ?,?,?)`;
@@ -44,7 +58,7 @@ app.post('/livros', async(req: Request, res: Response) => {
     });
 });
 
-
+// Atualização
 app.put('/livros/:id',(req: Request, res: Response) => {
     const { id } = req.params;
    const { nome_livro,quantidade_paginas,edicao_livro,descricao} = req.body;
@@ -65,7 +79,7 @@ app.put('/livros/:id',(req: Request, res: Response) => {
     });
 });
 
-
+//Deleta
 app.delete('/livros/:id',async (req: Request, res: Response) => {
     const { id } = req.params;
     const sql = `DELETE FROM livro WHERE id_livro = ?`;
