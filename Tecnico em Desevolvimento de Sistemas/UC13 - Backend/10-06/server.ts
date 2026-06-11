@@ -1,3 +1,14 @@
+/*
+===============================================================
+Rota: Disponivel:
+Get: http://localhost:3000/livros -> Listar todos
+Get: http://localhost:3000/lista -> Contar quantidade
+Post: http://localhost:3000/livros 
+Put: http://localhost:3000/livros/id
+Delete: http://localhost:3000/livros/id
+*/
+
+
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { pool } from './database';
