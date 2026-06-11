@@ -53,6 +53,21 @@ app.get('/livros/:id', (req: Request, res: Response) => {
     });
 });
 
+// Conta os registros na tabela
+app.get('/livros/:nome', (req: Request, res: Response) => {
+    const sql = `SELECT * from livro where nome_livro LIKE ?`;
+    const nome_livro = req.params.nome;
+    pool.query(sql,[nome_livro], (err, results) => {
+        try {
+        return res.status(200).json(results);
+        } catch (error) {
+            console.error("Erro Não foi possivel consultar o Banco!")
+            return res.status(500).json({ erro: error.message });
+        }
+    });
+});
+
+
 
 // Seleciona todos os livros
 app.get('/listar', (req: Request, res: Response) => {
