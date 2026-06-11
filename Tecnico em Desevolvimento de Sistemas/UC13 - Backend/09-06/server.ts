@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { pool } from './database';
+import bcrypt from 'bcrypt';
 
 const PORT = 3000;
 
@@ -26,10 +27,27 @@ app.get('/teste', (req: Request, res: Response) => {
     });
 });
 
-app.post('/testes', (req: Request, res: Response) => {
+app.get('/teste/:id', (req: Request, res: Response) => {
+    const id = req.params.id;
+    const sql = `SELECT * FROM usuarios WHERE id = ?`;
+
+    pool.query(sql, [id], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({
+                erro: "Não foi possível consultar o banco"
+            });
+        }
+
+        return res.json(results);
+    });
+});
+
+app.post('/testes', async(req: Request, res: Response) => {
     const { nome,email,senha,data_cadastro } = req.body;
+    const senhahash = await bcrypt.hash(senha,15);
     const sql = `INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES (?, ?,?,?)`;
-     pool.query(sql, [nome,email,senha,data_cadastro], (err, result) => {
+     pool.query(sql, [nome,email,senhahash,data_cadastro], (err, result) => {
         try {
         if (err) {
             return res.status(500).json({ erro: err.message });
@@ -84,6 +102,8 @@ app.delete('/testes/:id',async (req: Request, res: Response) => {
         }
     });
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
