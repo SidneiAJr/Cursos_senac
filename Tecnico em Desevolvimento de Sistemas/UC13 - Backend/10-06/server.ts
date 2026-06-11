@@ -6,6 +6,7 @@ Get: http://localhost:3000/lista -> Contar quantidade
 Post: http://localhost:3000/livros 
 Put: http://localhost:3000/livros/id
 Delete: http://localhost:3000/livros/id
+===============================================================
 */
 
 
@@ -37,6 +38,21 @@ app.get('/livros', (req: Request, res: Response) => {
         }
     });
 });
+
+// Conta os registros na tabela
+app.get('/livros/:id', (req: Request, res: Response) => {
+    const sql = `SELECT * from livro where id_livro=?`;
+     const id = req.params.id;
+    pool.query(sql,[id], (err, results) => {
+        try {
+        return res.status(200).json(results);
+        } catch (error) {
+            console.error("Erro Não foi possivel consultar o Banco!")
+            return res.status(500).json({ erro: error.message });
+        }
+    });
+});
+
 
 // Seleciona todos os livros
 app.get('/listar', (req: Request, res: Response) => {
