@@ -122,6 +122,41 @@ app.put('/livros/:id',(req: Request, res: Response) => {
     });
 });
 
+app.patch("/livros/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const campos = req.body;
+        const keys = Object.keys(campos);
+        const values = Object.values(campos);
+        if (keys.length === 0) {
+            return res.status(400).json({
+                mensagem: "Nenhum campo enviado"
+            });
+        }
+        const setClause = keys
+            .map(key => `${key} = ?`)
+            .join(", ");
+
+        const [result]: any = await pool.promise().query(
+            `UPDATE livro SET ${setClause} WHERE id = ?`,
+            [...values, id]
+        );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                mensagem: "Livro não encontrado"
+            });
+        }
+        return res.status(200).json({
+            mensagem: "Livro atualizado parcialmente com sucesso"
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            mensagem: "Erro interno do servidor"
+        });
+    }
+});
+
 //Deleta
 app.delete('/livros/:id',async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -148,5 +183,4 @@ app.delete('/livros/:id',async (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
 
