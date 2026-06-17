@@ -1,72 +1,94 @@
 import { pool } from "../config/database";
-import { Usuario } from "../models/Usuario";
+import { Usuario } from "../models/User";
+import bcrypt from 'bcrypt';  
 
 export class UsuarioService {
+    async create(email: string, password: string) {
+        if (email.length === 0 || password.length === 0) {
+            throw new Error("Informação nao podem estar vazias")
+        }
+        const saltRounds = 10;
+        const senhaCriptografada = await bcrypt.hash(password, saltRounds);
 
-    async create(email: string, senha: string) {
-
-        const usuario = new Usuario(
-            email,
-            senha
-        );
+        const user = new Usuario(email, senhaCriptografada);
 
         const [result] = await pool.query(
-            "INSERT INTO usuarios (email, senha) VALUES (?, ?)",
-            [
-                usuario.getEmail(),
-                usuario.getSenha()
-            ]
-        );
+            'Insert into usuarios (email,senha) values(?,?)',
+            [user.getEmail(), user.getSenha()]
+        )
 
         return result;
     }
 
-    async findAll() {
+    async update(id: number, email: string, password: string) {
+        if (email.length === 0 || password.length === 0) {
+            throw new Error("Informação nao podem estar vazias")
+        }
 
-        const [rows] = await pool.query(
-            "SELECT * FROM usuarios"
+        const [result]: any = await pool.query(
+            'UPDATE usuarios SET email = ?, senha = ? WHERE id = ?',
+            [email, password, id] 
         );
 
-        return rows;
+        if (result.affectedRows === 0) {
+            throw new Error("Usuário não encontrado");
+        }
+
+        return result;
     }
 
-    async findById(id: number) {
+    async updateParcial(id: number, email: string, password: string) {
+        if (email.length === 0 || password.length === 0) {
+            throw new Error("Informação nao podem estar vazias")
+        }
 
-        const [rows]: any = await pool.query(
-            "SELECT * FROM usuarios WHERE id = ?",
-            [id]
+        const [result]:any = await pool.query(
+            'UPDATE usuarios SET email = ? WHERE id = ?',
+            [email, password, id]  
         );
 
-        return rows[0];
-    }
-
-    async update(
-        id: number,
-        email: string,
-        senha: string
-    ) {
-
-        const [result] = await pool.query(
-            `UPDATE usuarios
-             SET email = ?, senha = ?
-             WHERE id = ?`,
-            [
-                email,
-                senha,
-                id
-            ]
-        );
+        if (result.affectedRows === 0) {
+            throw new Error("Usuário não encontrado");
+        }
 
         return result;
     }
 
     async delete(id: number) {
-
-        const [result] = await pool.query(
-            "DELETE FROM usuarios WHERE id = ?",
+        if (!id || isNaN(id) || id <= 0) {
+            throw new Error("ID inválido");
+        }
+        const [result]:any = await pool.query(
+            'Delete from usuarios WHERE id = ?',
             [id]
         );
 
+        if (result.affectedRows === 0) {
+            throw new Error("Usuário não encontrado");
+        }
+
         return result;
     }
+
+    async findall() {
+        const [rows] = await pool.query('SELECT * FROM usuarios');
+        return rows;
+    }
+
+    async findID(id: number) {
+        const [rows]: any = await pool.query(
+            'SELECT * FROM usuarios WHERE id = ?',
+            [id]
+        );
+        return rows[0];
+    }
+
+    async findEmail(email: string) {
+        const [rows]: any = await pool.query(
+            'SELECT * FROM usuarios WHERE email = ?',
+            [email]
+        );
+        return rows[0];
+    }
+    
 }
