@@ -7,7 +7,7 @@ const controller = new UsuarioController();
 // Criar usuário
 router.post("/usuarios", controller.createUsuario.bind(controller));
 
-router.post("/usuarios/:id", controller.buscarPorId.bind(controller));
+router.get("/usuarios/:id", controller.buscarPorId.bind(controller));
 
 // Listar todos
 router.get("/usuarios", controller.listarUsuarios.bind(controller));
