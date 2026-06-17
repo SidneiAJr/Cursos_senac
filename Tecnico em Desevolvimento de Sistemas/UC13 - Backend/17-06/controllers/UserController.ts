@@ -40,13 +40,13 @@ export class UsuarioController {
     async updateParcialUsuario(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            const { email,password } = req.body;
+            const { email } = req.body;
 
             if (!email) {
                 return res.status(400).json({ mensagem: "Email é obrigatório" });
             }
 
-            await this.service.updateParcial(id, email,password);
+            await this.service.updateParcial(id,email);
             return res.status(200).json({ mensagem: "Usuário atualizado parcialmente" });
 
         } catch (error: any) {
