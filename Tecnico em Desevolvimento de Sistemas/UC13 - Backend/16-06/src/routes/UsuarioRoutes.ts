@@ -1,31 +1,24 @@
 import { Router } from "express";
-import { UsuarioController } from "../controllers/UsuarioController";
+import { UsuarioController } from "../controllers/UserController";
 
 const router = Router();
+const controller = new UsuarioController();
 
-const controller =
-    new UsuarioController();
+// Criar usuário
+router.post("/usuarios", controller.createUsuario.bind(controller));
 
-router.get("/usuarios",(req, res) =>
-        controller.listUsuarios(req, res)
-);
+router.post("/usuarios/:id", controller.buscarPorId.bind(controller));
 
-router.get("/usuarios/:id", (req, res) =>
-        controller.getUsuario(req, res)
-);
+// Listar todos
+router.get("/usuarios", controller.listarUsuarios.bind(controller));
 
-router.post("/usuarios", (req, res) =>
-        controller.createUsuario(req, res)
-);
+// Atualizar completo
+router.put("/usuarios/:id", controller.updateUsuario.bind(controller));
 
-router.put("/usuarios/:id",
-    (req, res) =>
-        controller.updateUsuario(req, res)
-);
+// Atualizar parcial (só email)
+router.patch("/usuarios/:id", controller.updateParcialUsuario.bind(controller));
 
-router.delete("/usuarios/:id",
-    (req, res) =>
-        controller.deleteUsuario(req, res)
-);
+// Deletar
+router.delete("/usuarios/:id", controller.deletarUsuario.bind(controller));
 
 export default router;
