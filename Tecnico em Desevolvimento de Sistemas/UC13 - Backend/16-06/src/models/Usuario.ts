@@ -4,15 +4,24 @@ export class Usuario {
     private email: string;
     private senha: string;
     
-    constructor(
-        email: string,
-        senha: string,
-        id?: number
-    ) {
+    constructor(email: string,senha: string,id?: number) {
         this.id = id;
         this.email = email;
         this.senha = senha;
+         if (!email || email.trim() === '') {
+            throw new Error('Email não pode estar vazio');
+        }
+
+        if (!email.includes('@') || !email.includes('.')) {
+            throw new Error('Email inválido');
+        }
+
+        // 🔥 VALIDAÇÃO: Senha mínima 6 caracteres
+        if (!senha || senha.length < 6) {
+            throw new Error('Senha deve ter no mínimo 6 caracteres');
+        }
     }
+    
 
     public getId(): number | undefined {
         return this.id;

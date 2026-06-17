@@ -9,6 +9,7 @@ export class UsuarioController {
         try {
 
             const { email, senha } = req.body;
+ 
 
             if (!email || !senha) {
                 return res.status(400).json({
