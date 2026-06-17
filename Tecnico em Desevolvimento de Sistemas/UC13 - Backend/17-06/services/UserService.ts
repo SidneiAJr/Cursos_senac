@@ -1,13 +1,16 @@
 import { pool } from "../config/database";
 import { Usuario } from "../models/User";
+import bcrypt from 'bcrypt';  
 
 export class UsuarioService {
     async create(email: string, password: string) {
         if (email.length === 0 || password.length === 0) {
             throw new Error("Informação nao podem estar vazias")
         }
+        const saltRounds = 10;
+        const senhaCriptografada = await bcrypt.hash(password, saltRounds);
 
-        const user = new Usuario(email, password);
+        const user = new Usuario(email, senhaCriptografada);
 
         const [result] = await pool.query(
             'Insert into usuarios (email,senha) values(?,?)',
@@ -22,9 +25,9 @@ export class UsuarioService {
             throw new Error("Informação nao podem estar vazias")
         }
 
-        const [result] = await pool.query(
+        const [result]: any = await pool.query(
             'UPDATE usuarios SET email = ?, senha = ? WHERE id = ?',
-            [email, password, id]  // 👈 PRECISA DO ID!
+            [email, password, id] 
         );
 
         if (result.affectedRows === 0) {
@@ -39,9 +42,9 @@ export class UsuarioService {
             throw new Error("Informação nao podem estar vazias")
         }
 
-        const [result] = await pool.query(
+        const [result]:any = await pool.query(
             'UPDATE usuarios SET email = ? WHERE id = ?',
-            [email, password, id]  // 👈 PRECISA DO ID!
+            [email, password, id]  
         );
 
         if (result.affectedRows === 0) {
@@ -55,7 +58,7 @@ export class UsuarioService {
         if (!id || isNaN(id) || id <= 0) {
             throw new Error("ID inválido");
         }
-        const [result] = await pool.query(
+        const [result]:any = await pool.query(
             'Delete from usuarios WHERE id = ?',
             [id]
         );
