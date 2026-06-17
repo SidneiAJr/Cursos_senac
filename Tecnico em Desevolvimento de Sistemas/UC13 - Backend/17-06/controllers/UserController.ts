@@ -6,7 +6,7 @@ export class UsuarioController {
 
     async createUsuario(req: Request, res: Response) {
         try {
-            const { email, password } = req.body;
+            const { email, password} = req.body;
 
             if (!email || !password) {
                 return res.status(400).json({ mensagem: "Email e senha são obrigatórios" });
@@ -40,13 +40,13 @@ export class UsuarioController {
     async updateParcialUsuario(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            const { email } = req.body;
+            const { email,password } = req.body;
 
             if (!email) {
                 return res.status(400).json({ mensagem: "Email é obrigatório" });
             }
 
-            await this.service.updateParcial(id, email);
+            await this.service.updateParcial(id, email,password);
             return res.status(200).json({ mensagem: "Usuário atualizado parcialmente" });
 
         } catch (error: any) {
@@ -56,7 +56,7 @@ export class UsuarioController {
 
     async listarUsuarios(req: Request, res: Response) {
         try {
-            const usuarios = await this.service.findAll();
+            const usuarios = await this.service.findall();
             return res.status(200).json(usuarios);
         } catch (error: any) {
             return res.status(500).json({ mensagem: "Erro interno: " + error.message });
