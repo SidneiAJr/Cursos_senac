@@ -63,6 +63,28 @@ export class UsuarioController {
         }
     }
 
+   async buscarPorId(req: Request, res: Response) {
+    try {
+        const id = Number(req.params.id);
+        if (!id || isNaN(id) || id <= 0) {
+            return res.status(400).json({ 
+                mensagem: "ID inválido" 
+            });
+        }
+        const usuario = await this.service.findID(id);
+        if (!usuario) {
+            return res.status(404).json({ 
+                mensagem: "Usuário não encontrado" 
+            });
+        }
+        return res.status(200).json(usuario);
+    } catch (error: any) {
+        return res.status(500).json({ 
+            mensagem: "Erro interno: " + error.message 
+        });
+    }
+}
+
     async deletarUsuario(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
