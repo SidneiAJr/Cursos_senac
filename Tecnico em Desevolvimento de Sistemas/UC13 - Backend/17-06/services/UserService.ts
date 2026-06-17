@@ -37,14 +37,14 @@ export class UsuarioService {
         return result;
     }
 
-    async updateParcial(id: number, email: string, password: string) {
-        if (email.length === 0 || password.length === 0) {
+    async updateParcial(id: number, email: string) {
+        if (email.length === 0 ) {
             throw new Error("Informação nao podem estar vazias")
         }
 
         const [result]:any = await pool.query(
             'UPDATE usuarios SET email = ? WHERE id = ?',
-            [email, password, id]  
+            [email, id]  
         );
 
         if (result.affectedRows === 0) {
