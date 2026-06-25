@@ -8,7 +8,7 @@ export class UserService{
     async getAllUser(){
         try {
             const users = await this.repo.findAll()
-            if(!users) throw new AppError("Nenhum usuario cadastrado",404);
+            if(users&& users == null)  throw new AppError("Nenhum Usuario Cadastrado",404)
             return users
         } catch (error) {
             throw new AppError('Erro ao buscar usuarios',500)
@@ -16,12 +16,15 @@ export class UserService{
         }
     }
 
-    async registerUser(email:string){
+    async registerUser(nome:string,email:string,senha:string){
          try {
             const UserAlreadyExist = this.repo.findByEmail(email)
-            if(UserAlreadyExist) throw new Error("",)
+            if(!UserAlreadyExist!=null) throw new AppError("Email ja registrado",409) 
+            const user = new User(0,nome,email,senha)
+             const newUser = await this.repo.create(user)
+             if(newUser == null) return new AppError("Erro ao inserir",500)
          } catch (error) {
-            
+            throw new AppError("Algo de Errado não deu certo",500)
          }
     }
 
