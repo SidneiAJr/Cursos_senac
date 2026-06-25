@@ -23,6 +23,7 @@ export class UserService{
             const user = new User(0,nome,email,senha)
              const newUser = await this.repo.create(user)
              if(newUser == null) return new AppError("Erro ao inserir",500)
+            return newUser
          } catch (error) {
             throw new AppError("Algo de Errado não deu certo",500)
          }
