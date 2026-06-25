@@ -1,15 +1,15 @@
 import express from 'express';
-import router from './routes/userRoutes';
+import userRoutes from './routes/userRoutes';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-app.use('/api/usuarios', router);
+app.use('/api/usuarios', userRoutes);
 
 app.get('/', (req, res) => {
-    res.json({ message: '🚀 Servidor RUNNNNN!' });
+    res.json({ message: '🚀 Servidor Online !' });
 });
 
 app.listen(port, () => {

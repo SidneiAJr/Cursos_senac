@@ -1,75 +1,85 @@
 import { Request, Response } from 'express';
-import { UserRepository } from '../repositories/UsuarioRepository';
+import { UserService } from '../services/UsuarioService';
 
-const usuarioRepo = new UserRepository();
+const userService = new UserService();
 
-export class UsuarioController {
+export class UserController {
     
-    static async findAll(req: Request, res: Response) {
+    // ============================================
+    // 📋 LISTAR TODOS
+    // ============================================
+    static async getAll(req: Request, res: Response) {
         try {
-            const usuarios = await usuarioRepo.findAll();
-            res.json(usuarios);
-        } catch (error) {
-            console.error('❌ Erro ao listar:', error);
-            res.status(500).json({ message: 'Erro ao listar usuários' });
+            const users = await userService.getAllUser();
+            res.json(users);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
         }
     }
 
-    static async findById(req: Request, res: Response) {
+    // ============================================
+    // 🔍 BUSCAR POR ID
+    // ============================================
+    static async getById(req: Request, res: Response) {
         try {
             const id = parseInt(req.params.id);
-            const usuario = await usuarioRepo.findById(id);
-            
-            if (!usuario) {
-                return res.status(404).json({ message: 'Usuário não encontrado' });
-            }
-            
-            res.json(usuario);
-        } catch (error) {
-            console.error('❌ Erro ao buscar:', error);
-            res.status(500).json({ message: 'Erro ao buscar usuário' });
+            const user = await userService.getAllUser;
+            res.json(user);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
         }
     }
 
-    static async create(req: Request, res: Response) {
+    // ============================================
+    // ✏️ REGISTRAR
+    // ============================================
+    static async register(req: Request, res: Response) {
         try {
-            const usuario = await usuarioRepo.create(req.body);
-            res.status(201).json(usuario);
-        } catch (error) {
-            console.error('❌ Erro ao criar:', error);
-            res.status(500).json({ message: 'Erro ao criar usuário' });
+            const { nome, email, senha } = req.body;
+            const user = await userService.registerUser(nome, email, senha);
+            res.status(201).json(user);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
         }
     }
 
+    // ============================================
+    // ✏️ ATUALIZAR
+    // ============================================
     static async update(req: Request, res: Response) {
         try {
             const id = parseInt(req.params.id);
-            const usuario = await usuarioRepo.update(id, req.body);
-            
-            if (!usuario) {
-                return res.status(404).json({ message: 'Usuário não encontrado' });
-            }
-            
-            res.json(usuario);
-        } catch (error) {
-            console.error('❌ Erro ao atualizar:', error);
-            res.status(500).json({ message: 'Erro ao atualizar usuário' });
+            const { nome, email, senha } = req.body;
+            const user = await userService.updateUser(id, { nome, email, senha });
+            res.json(user);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
         }
     }
 
+    // ============================================
+    // 🗑️ DELETAR
+    // ============================================
     static async delete(req: Request, res: Response) {
         try {
             const id = parseInt(req.params.id);
-            const deleted = await usuarioRepo.delete(id);
-            
-            if (!deleted) {
-                return res.status(404).json({ message: 'Usuário não encontrado' });
-            }
-            
-            res.json({ message: 'Usuário deletado com sucesso' });
-        } catch (error) {
-            console.error('❌ Erro ao deletar:', error);
-            res.status(500).json({ message: 'Erro ao deletar usuário' });
+            const result = await userService.deleteUser(id);
+            res.json(result);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
+        }
+    }
+
+    // ============================================
+    // 🔐 LOGIN
+    // ============================================
+    static async login(req: Request, res: Response) {
+        try {
+            const { email, senha } = req.body;
+            const result = await userService.login(email, senha);
+            res.json(result);
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json({ message: error.message });
         }
     }
 }
