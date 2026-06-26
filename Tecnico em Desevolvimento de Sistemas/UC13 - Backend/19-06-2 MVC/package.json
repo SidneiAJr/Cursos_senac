@@ -1,0 +1,28 @@
+{
+  "name": "aprender",
+  "version": "1.0.0",
+  "description": "Backend criado com Constellation CLI",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.22.5",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.30",
+    "typeorm-extension": "^3.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.25",
+    "@types/node": "^20.19.43",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
