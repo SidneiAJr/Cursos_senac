@@ -1,10 +1,13 @@
 import express from 'express'
 import routes from './routes/UserRoutes'
+import { errorMiddleware } from './middlewares/error-middleware'
 
 const PORT = 3000
 const app = express()
-app.use(express.json()) // Define que a API utiliza JSON (API REST)
+app.use(express.json()) 
 app.use(express.urlencoded({ extended: true }))
+
+app.use(errorMiddleware)
 app.use('/api', routes)
 
 

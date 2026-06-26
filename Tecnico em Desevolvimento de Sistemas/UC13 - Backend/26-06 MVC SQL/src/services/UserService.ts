@@ -8,12 +8,8 @@ export class UserService {
     private readonly repository = new UserRepository();
 
     async getAllUser() {
-        try {
-            const users = await this.repository.findAll();
-            return users;
-        } catch {
-            throw new AppError('Erro ao buscar dados!', 500)
-        }
+        const users = await this.repository.findAll();
+        return users;
     }
 
     async registerUser(nome: string, email: string, senha: string) {
