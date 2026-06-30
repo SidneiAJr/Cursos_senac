@@ -1,4 +1,4 @@
-# teste
+# Aulas dia 30-06 | TypeORM & ZOD
 
 > Backend criado com Constellation CLI
 
