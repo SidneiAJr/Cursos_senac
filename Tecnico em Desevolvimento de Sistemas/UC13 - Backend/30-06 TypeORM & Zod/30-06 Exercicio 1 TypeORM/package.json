@@ -1,29 +1,221 @@
 {
+  // ============================================
+  // 📦 NOME DO PROJETO
+  // ============================================
+  // "name" é o identificador do seu projeto no npm.
+  // Ele é usado quando você publica o pacote ou instala dependências.
+  // 
+  // Exemplo: npm install teste (se estivesse publicado)
   "name": "teste",
+
+  // ============================================
+  // 🏷️ VERSÃO DO PROJETO
+  // ============================================
+  // Segue o padrão Semantic Versioning (SemVer):
+  // MAJOR.MINOR.PATCH
+  // 
+  // MAJOR (1.x.x) → mudanças que quebram compatibilidade
+  // MINOR (x.0.x) → novas funcionalidades (compatível)
+  // PATCH (x.x.0) → correções de bugs
   "version": "1.0.0",
+
+  // ============================================
+  // 📝 DESCRIÇÃO DO PROJETO
+  // ============================================
+  // Uma breve descrição do que o projeto faz.
+  // É exibido no npm search e no package.json.
   "description": "Backend criado com Constellation CLI",
+
+  // ============================================
+  // 🚪 PONTO DE ENTRADA DA APLICAÇÃO
+  // ============================================
+  // "main" define qual arquivo é executado quando você roda:
+  // node dist/server.js
+  // 
+  // O código TypeScript é compilado para JavaScript na pasta dist/.
+  // O servidor roda a partir do arquivo compilado.
   "main": "dist/server.js",
+
+  // ============================================
+  // 📜 SCRIPTS DISPONÍVEIS
+  // ============================================
+  // Estes são comandos que você pode rodar com npm run [nome]
+  // 
+  // Exemplo: npm run dev
   "scripts": {
+    // ============================================
+    // 🔨 build — COMPILAR TYPESCRIPT
+    // ============================================
+    // "tsc" compila todo o código TypeScript para JavaScript.
+    // Os arquivos JS são gerados na pasta dist/ (definida no tsconfig.json).
+    // 
+    // Quando você roda: npm run build
+    // O TypeScript verifica erros e gera os arquivos JS.
     "build": "tsc",
+
+    // ============================================
+    // 🚀 start — RODAR EM PRODUÇÃO
+    // ============================================
+    // Roda o servidor a partir do código compilado (dist/).
+    // 
+    // Quando você roda: npm run start
+    // O servidor executa o arquivo dist/server.js
+    // 
+    // ⚠️ ATENÇÃO: Esse comando NÃO compila o código.
+    // Você precisa rodar npm run build antes.
     "start": "node dist/server.js",
+
+    // ============================================
+    // 🧪 dev — RODAR EM DESENVOLVIMENTO (HOT RELOAD)
+    // ============================================
+    // "ts-node-dev" executa o TypeScript diretamente (sem compilar).
+    // Ele também observa mudanças nos arquivos e reinicia o servidor automaticamente.
+    // 
+    // Quando você roda: npm run dev
+    // O servidor inicia e você pode ver mudanças em tempo real.
+    // 
+    // Vantagem: Não precisa rodar build toda vez que alterar o código.
+    // Desvantagem: Mais lento que o código compilado (mas OK para dev).
     "dev": "ts-node-dev src/server.ts"
   },
+
+  // ============================================
+  // 📦 DEPENDÊNCIAS DE PRODUÇÃO
+  // ============================================
+  // São as bibliotecas que o projeto PRECISA para funcionar em produção.
+  // Quando você roda npm install, elas são instaladas.
   "dependencies": {
+    // ============================================
+    // 🔒 bcrypt — HASH DE SENHAS
+    // ============================================
+    // Biblioteca para criptografar senhas usando bcrypt.
+    // Transforma a senha em um hash seguro que pode ser armazenado no banco.
+    // 
+    // Versão: ^5.1.1
+    // ^ → aceita atualizações de patch e minor (5.1.x e 5.x.x)
     "bcrypt": "^5.1.1",
+
+    // ============================================
+    // 🌐 cors — COMPARTILHAMENTO DE RECURSOS
+    // ============================================
+    // Permite que o backend aceite requisições de domínios diferentes.
+    // Essencial para APIs que serão consumidas por frontends em outras portas.
+    // 
+    // Exemplo: Frontend em localhost:3000, Backend em localhost:5000
+    // Sem CORS, o navegador bloqueia a requisição.
     "cors": "^2.8.5",
+
+    // ============================================
+    // 🔧 dotenv — VARIÁVEIS DE AMBIENTE
+    // ============================================
+    // Carrega variáveis de ambiente de um arquivo .env.
+    // Elas ficam disponíveis em process.env.
+    // 
+    // Exemplo no .env: DB_HOST=localhost
+    // No código: process.env.DB_HOST → "localhost"
     "dotenv": "^16.3.0",
+
+    // ============================================
+    // 🚀 express — FRAMEWORK WEB
+    // ============================================
+    // Framework para criar APIs REST e aplicações web.
+    // Gerencia rotas, middlewares, requisições e respostas HTTP.
     "express": "^4.18.2",
+
+    // ============================================
+    // 🔑 jsonwebtoken — JWT (AUTENTICAÇÃO)
+    // ============================================
+    // Cria e valida tokens JWT para autenticação.
+    // O token contém informações do usuário (payload) e é assinado.
+    // 
+    // Uso: Login gera token, o cliente envia em requisições protegidas.
     "jsonwebtoken": "^9.0.0",
+
+    // ============================================
+    // 🗄️ mysql2 — DRIVER MYSQL
+    // ============================================
+    // Driver para conectar Node.js ao MySQL.
+    // É a base para o TypeORM se comunicar com o banco.
     "mysql2": "^3.11.0",
+
+    // ============================================
+    // 🪞 reflect-metadata — DECORATORS NO TYPESCRIPT
+    // ============================================
+    // Necessário para que os decorators do TypeORM funcionem.
+    // (@Entity, @Column, @PrimaryGeneratedColumn, etc.)
+    // 
+    // Deve ser importado no início do arquivo:
+    // import "reflect-metadata";
     "reflect-metadata": "^0.2.2",
+
+    // ============================================
+    // 🏗️ typeorm — ORM (OBJECT-RELATIONAL MAPPING)
+    // ============================================
+    // Mapeia classes TypeScript para tabelas no banco de dados.
+    // Permite fazer queries usando objetos em vez de SQL puro.
+    // 
+    // Exemplo:
+    // await userRepository.find() → SELECT * FROM users
+    // await userRepository.save(user) → INSERT INTO users ...
     "typeorm": "^0.3.30",
+
+    // ============================================
+    // ✅ zod — VALIDAÇÃO DE DADOS
+    // ============================================
+    // Biblioteca para validar schemas de dados.
+    // Muito usada para validar o body de requisições.
+    // 
+    // Exemplo:
+    // const schema = z.object({ nome: z.string(), email: z.string().email() });
+    // schema.parse(req.body) → valida e retorna os dados ou lança erro
+    // 
+    // ⚠️ ATENÇÃO: versão 4.4.3! A versão 4 tem mudanças em relação à 3.
     "zod": "^4.4.3"
   },
+
+  // ============================================
+  // 🛠️ DEPENDÊNCIAS DE DESENVOLVIMENTO
+  // ============================================
+  // São bibliotecas usadas APENAS durante o desenvolvimento.
+  // Não são necessárias em produção.
+  // 
+  // Quando você roda npm install --production, elas NÃO são instaladas.
   "devDependencies": {
+    // ============================================
+    // 📝 @types/bcrypt — TIPOS DO BCRYPT
+    // ============================================
+    // Tipos TypeScript para a biblioteca bcrypt.
+    // Permite autocomplete e verificação de tipos.
     "@types/bcrypt": "^6.0.0",
+
+    // ============================================
+    // 📝 @types/express — TIPOS DO EXPRESS
+    // ============================================
+    // Tipos TypeScript para o Express.
     "@types/express": "^4.17.21",
+
+    // ============================================
+    // 📝 @types/node — TIPOS DO NODE.JS
+    // ============================================
+    // Tipos TypeScript para o Node.js (process, fs, path, etc.)
     "@types/node": "^20.0.0",
+
+    // ============================================
+    // 🧪 ts-node-dev — EXECUTA TS COM HOT RELOAD
+    // ============================================
+    // Combinação de ts-node (executa TS) e nodemon (reinicia ao salvar).
+    // 
+    // ts-node → executa TypeScript sem compilar
+    // dev → observa mudanças e reinicia o servidor
     "ts-node-dev": "^2.0.0",
+
+    // ============================================
+    // 📦 typescript — COMPILADOR TYPESCRIPT
+    // ============================================
+    // Compila TypeScript para JavaScript.
+    // É usado pelo comando npm run build.
+    // 
+    // ⚠️ ATENÇÃO: versão 6.0.3! É uma versão recente.
     "typescript": "^6.0.3"
   }
 }
