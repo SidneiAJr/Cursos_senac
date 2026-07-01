@@ -7,19 +7,19 @@ export class Selecao {
 @PrimaryGeneratedColumn()
 id!: number;
 
-@Column({length: 50 , nullable: false , unique:true})
+@Column({type: "varchar" ,length: 50 , nullable: false , unique:true})
 nome: string;
 
-@Column({length: 50 , nullable: false , unique:true})
+@Column({type: "varchar", length: 50 , nullable: false , unique:true})
 pais:string
 
-@Column({length: 150 , nullable:false, unique:true})
+@Column({type: "varchar",length: 150 , nullable:false, unique:true})
 tecnico:string
 
-@Column({ type: "int", nullable: false })
+@Column({type: "int", nullable: false })
 rankingFifa!: number;
 
-@Column({ type: "date", nullable: true })
+@Column({type: "date", nullable: true })
 anoFundacao?: Date;
 
  @OneToMany(() => Jogador, (jogador) => jogador.selecao)

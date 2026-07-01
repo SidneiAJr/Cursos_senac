@@ -7,13 +7,13 @@ export class Jogador {
 @PrimaryGeneratedColumn()
 id!: number;
 
-@Column({length: 50 , nullable: false , unique:true})
+@Column({type: "varchar", length: 50 , nullable: false , unique:true})
 nome: string;
 
 @Column({ type: "int", nullable: false , unique:true})
 numeroCamisa:number
 
-@Column({length: 150 , nullable:false, unique:true})
+@Column({type: "varchar", length: 150 , nullable:false, unique:true})
 posicao:string
 
 @Column({ type: "int", nullable: false })
@@ -32,3 +32,4 @@ gols: number;
 selecao: Selecao;
     
 }
+
