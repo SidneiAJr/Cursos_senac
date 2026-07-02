@@ -6,6 +6,8 @@ const routes = Router()
 
 const userController = new UserController();
 
-routes.get('/user',userController.list.bind(userController))
+routes.get('/users',userController.list.bind(userController))
 routes.get('/users/id',userController.getById.bind(userController))
 routes.post('/users',validateUser,userController.create.bind(userController))
+
+export default routes

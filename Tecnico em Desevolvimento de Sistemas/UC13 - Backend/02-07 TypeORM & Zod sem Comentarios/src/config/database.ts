@@ -115,7 +115,7 @@ export const AppDataSource = new DataSource({
     // - Se falta uma coluna → adiciona
     // - Se uma coluna mudou de tipo → altera
     // - Se uma coluna foi removida → remove (⚠️ PERDE DADOS!)
-    synchronize: true,
+    synchronize: false,
 
     // ============================================
     // 📝 LOGGING
