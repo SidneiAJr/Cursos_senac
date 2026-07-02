@@ -10,7 +10,7 @@ export const UserRepository = {
     async findById(id: number) {
         return repository.findOne({ where: { id }, relations: ['posts'] });
     },
-     async create(data:User){
+     async create(data:any){
        const user = repository.create(data)
        return repository.save(user)
     },
@@ -24,3 +24,4 @@ export const UserRepository = {
         return repository.delete(id);
     },
 };
+
