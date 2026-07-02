@@ -101,8 +101,14 @@ export const UserRepository = {
     // O Partial<T> torna todas as propriedades opcionais.
     // 
     // Exemplo: create({ nome: "João", email: "joao@email.com" })
-    create(data: Partial<User>) {
+    async create(data: Partial<User>) {
         return repository.create(data);
+    },
+
+
+    async create2(data:User){
+       const user = repository.create(data)
+       return repository.save(user)
     },
 
     // ============================================
