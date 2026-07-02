@@ -10,7 +10,7 @@ export const UserRepository = {
     async findById(id: number) {
         return repository.findOne({ where: { id }, relations: ['posts'] });
     },
-     async create(data:any){
+     async create(data:{nome:string,email:string, password:string}){
        const user = repository.create(data)
        return repository.save(user)
     },
