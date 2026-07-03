@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use(routes);  // 👈 REGISTRA AS ROTAS
+app.use(routes);  
 
 app.get('/', (req, res) => {
     res.json({ message: 'API rodando!' });
