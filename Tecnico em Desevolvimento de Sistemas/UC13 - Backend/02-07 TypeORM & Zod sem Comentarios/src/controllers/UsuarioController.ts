@@ -44,7 +44,7 @@ export class UserController{
                    });
                }
                await UserService.delete(id)
-               return res.status(204).json({mensagem:"Usuario Deletado com sucesso"});
+               return res.status(200).json({mensagem:"Usuario Deletado com sucesso"});
            } catch (error) {
                next(error);
            }
@@ -60,7 +60,7 @@ export class UserController{
                }
                const {nome,email,password} = req.body
                const user = await UserService.Update(id,{nome,email,password});
-               return res.status(204).json({mensagem:"Usuario Atualizado com sucesso",user});
+               return res.status(200).json({mensagem:"Usuario Atualizado com sucesso",user});
         } catch (error) {
              next(error);
         }
