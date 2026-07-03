@@ -43,4 +43,19 @@ export class PostController{
             next(error);
         }
     }
+
+    async delete(req: Request, res: Response, next: NextFunction){
+        try {
+            const id = Number(req.params.id);
+              if (isNaN(id)) {
+                return res.status(400).json({
+                    message: "ID inválido"
+                });
+            }
+            await PostService.delete(id)
+            return res.status(204).json({mensagem:"Post Deletado com sucesso"});
+        } catch (error) {
+            next(error);
+        }
+    }
 }

@@ -21,6 +21,14 @@ export const UserService={
         const hashedPassword = await bcrypt.hash(data.password,14);
         const user = await UserRepository.create({nome: data.nome,email:data.email,password: hashedPassword})
         return omitPassword(user)
+    },
+
+    async delete(id:number){
+    const user = await UserRepository.findById(id);
+    if(!user){
+    throw new NotFoundError("Post não encontrado")
     }
+    const deletar = await UserRepository.delete(id)
+    return deletar}
 
 }
