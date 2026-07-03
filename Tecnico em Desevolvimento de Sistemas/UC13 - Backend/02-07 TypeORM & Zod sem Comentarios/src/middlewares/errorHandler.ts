@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { NotFoundError } from '../services/UserService';
 
-export function errorHandler(err: any, req: Request, res: Response) {
+export function errorHandler(err: any, req: Request, res: Response,next:NextFunction) {
     console.error('Erro capturado pelo errorHandler:', err);
 
     if (err instanceof NotFoundError) {
