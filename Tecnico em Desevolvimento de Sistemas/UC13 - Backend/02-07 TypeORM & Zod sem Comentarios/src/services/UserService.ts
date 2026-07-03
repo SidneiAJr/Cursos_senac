@@ -29,6 +29,18 @@ export const UserService={
     throw new NotFoundError("Post não encontrado")
     }
     const deletar = await UserRepository.delete(id)
-    return deletar}
+    return deletar
+},
+   async Update(id:number,data:{nome?:string,email?:string,password?:string}){
+       const user = await UserRepository.findById(id);
+       if(!user){
+            throw new NotFoundError("ID não encontrado")
+       }
+       if(data.nome) user.nome = data.nome
+       if(data.email) user.email = data.email
+       if(data.password) user.password = await bcrypt.hash(data.password,14)
+       const updatedUser = await UserRepository.create(user)
+       return omitPassword(updatedUser)
+   }
 
 }

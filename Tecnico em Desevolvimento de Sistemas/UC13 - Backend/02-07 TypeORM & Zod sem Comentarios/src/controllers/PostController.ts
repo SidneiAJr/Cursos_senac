@@ -58,4 +58,20 @@ export class PostController{
             next(error);
         }
     }
+
+    async Update(req: Request, res: Response, next: NextFunction){
+            try {
+                const id = Number(req.params.id);
+                     if (isNaN(id)) {
+                       return res.status(400).json({
+                           message: "ID inválido"
+                       });
+                   }
+                   const {nome,email,password} = req.body
+                   const user = await PostService.Update(id,{nome,email,password});
+                   return res.status(204).json({mensagem:"Usuario Atualizado com sucesso",user});
+            } catch (error) {
+                 next(error);
+            }
+           }
 }
