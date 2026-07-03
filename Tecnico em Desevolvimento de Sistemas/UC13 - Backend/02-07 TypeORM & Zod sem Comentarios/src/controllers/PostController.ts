@@ -38,7 +38,7 @@ export class PostController{
                 userId
             });
 
-            return res.status(201).json(post);
+            return res.status(200).json({mensagem: "Post criado com sucesso!",post});
         } catch (error) {
             next(error);
         }
@@ -53,7 +53,7 @@ export class PostController{
                 });
             }
             await PostService.delete(id)
-            return res.status(204).json({mensagem:"Post Deletado com sucesso"});
+            return res.status(200).json({mensagem:"Post Deletado com sucesso"});
         } catch (error) {
             next(error);
         }
@@ -69,7 +69,7 @@ export class PostController{
                    }
                    const {nome,email,password} = req.body
                    const user = await PostService.Update(id,{nome,email,password});
-                   return res.status(204).json({mensagem:"Usuario Atualizado com sucesso",user});
+                   return res.status(200).json({mensagem:"Usuario Atualizado com sucesso",user});
             } catch (error) {
                  next(error);
             }
