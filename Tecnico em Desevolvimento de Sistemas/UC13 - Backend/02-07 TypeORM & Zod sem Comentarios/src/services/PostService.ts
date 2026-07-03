@@ -60,16 +60,5 @@ export const PostService={
     await PostRepository.save(post);
 
     return post;
-},
-async Update(id: number,data: { nome?: string; email?: string; password?: string }) {
-    const user = await UserRepository.findById(id);
-    if (!user) {
-        throw new NotFoundError("ID não encontrado");
-    }
-    if (data.nome) user.nome = data.nome;
-    if (data.email) user.email = data.email;
-    const updatedUser = await UserRepository.save(user);
-
-    return updatedUser;
 }
 }

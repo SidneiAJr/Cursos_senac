@@ -24,13 +24,17 @@ export const UserService={
     },
 
     async delete(id:number){
-    const user = await UserRepository.findById(id);
+    const user = await UserRepository.delete(id);
+    if(user.affected === 0){
+        throw new NotFoundError("Post não encontrado")
+    }
     if(!user){
     throw new NotFoundError("Post não encontrado")
     }
     const deletar = await UserRepository.delete(id)
     return deletar
 },
+
    async Update(id:number,data:{nome?:string,email?:string,password?:string}){
        const user = await UserRepository.findById(id);
        if(!user){
