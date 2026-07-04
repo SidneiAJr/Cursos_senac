@@ -1,0 +1,443 @@
+# **Assunto:** DataSource — Configuração da conexão com o banco (TypeORM + MySQL)
+
+### O que é
+Objeto central do TypeORM que encapsula todas as configs de conexão com o banco e registra quais entidades existem.
+
+### Pra que serve
+Sem ele, o TypeORM não sabe com qual banco falar, nem quais classes virar tabela — é o ponto de entrada obrigatório antes de qualquer query.
+
+### Fluxo
+```
+.env (DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME)
+        ↓
+dotenv.config() popula process.env
+        ↓
+new DataSource({ ...configs, entities: [User, Post] })
+        ↓
+AppDataSource exportado → usado nos repositories
+```
+
+### Exemplo
+```typescript
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { User } from "../models/Usuario";
+import { Post } from "../models/Post";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+
+export const AppDataSource = new DataSource({
+    type: "mysql",
+    host: DB_HOST,
+    port: Number(DB_PORT),
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    synchronize: false,
+    logging: false,
+    entities: [User, Post],
+});
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `import "reflect-metadata"` | Ativa o sistema de metadados do JS | Runtime global | Decorators do TypeORM | Sem ele, @Entity/@Column não funcionam | Importar uma única vez no entry point |
+| `import { DataSource }` | Traz a classe principal do TypeORM | `new DataSource(...)` | Toda a camada de banco | É o objeto que gerencia conexão e queries | — |
+| `import { User }, { Post }` | Registra as entidades no datasource | `entities: [User, Post]` | Models / tabelas | TypeORM precisa conhecer as classes para criar queries | Usar glob: `entities: ['src/models/*.ts']` |
+| `dotenv.config()` | Lê o `.env` e popula `process.env` | `process.env.*` | Variáveis de credencial | Evita hardcodar senha/host no código | Validar com `zod` ou `envalid` |
+| `const { DB_HOST... }` | Desestrutura as vars do `.env` | Campos do DataSource | `.env` / CI secrets | Centraliza as configs sensíveis | Checar `undefined` e lançar erro cedo |
+| `type: "mysql"` | Define o driver do banco | Driver MySQL interno | `mysql2` (peer dep) | Cada banco tem sintaxe/driver diferente | — |
+| `port: Number(DB_PORT)` | Converte string pra número | Config do DataSource | `.env` | `process.env` é sempre string; porta precisa ser `number` | Usar `parseInt(DB_PORT, 10)` |
+| `synchronize: false` | Não altera tabelas automaticamente | — | Migrations | `true` pode dropar coluna em prod | Deixar `false` sempre em prod |
+| `logging: false` | Não loga queries no console | — | Debug | Útil em dev, poluição em prod | Usar logger específico (winston, pino) |
+| `entities: [User, Post]` | Registra quais classes são tabelas | TypeORM internamente | Models | Sem isso o TypeORM ignora as entidades | Glob path para não precisar atualizar manualmente |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+Arquivo .env existe             dotenv.config() lê e injeta            process.env populado
+Entidades decoradas com         new DataSource valida configs          AppDataSource pronto
+@Entity existem                 e registra entidades                   para .initialize()
+reflect-metadata importado      reflect-metadata já ativo no runtime   Decorators funcionam
+```
+
+---
+
+# **Assunto:** Controller — Camada HTTP que recebe req e devolve res
+
+### O que é
+Classe que mapeia rotas HTTP para chamadas de serviço, tratando validação básica de params e propagando erros via `next`.
+
+### Pra que serve
+Separa a lógica de negócio (Service) da lógica de transporte HTTP — o Controller só sabe de `req`, `res` e `next`.
+
+### Fluxo
+```
+Requisição HTTP chega na rota
+        ↓
+Controller extrai params / body
+        ↓
+Chama PostService.método(...)
+        ↓
+Devolve res.json() ou next(error)
+```
+
+### Exemplo
+```typescript
+import { NextFunction, Request, Response } from "express";
+import { PostService } from "../services/PostService";
+
+export class PostController {
+    async list(req: Request, res: Response, next: NextFunction) {
+        try {
+            const posts = await PostService.ListAll();
+            return res.json(posts);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async getById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = Number(req.params.id);
+            if (isNaN(id)) return res.status(400).json({ message: "ID inválido" });
+            const post = await PostService.getByID(id);
+            return res.json(post);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async create(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { title, userId } = req.body;
+            const post = await PostService.create({ title, userId });
+            return res.status(200).json({ mensagem: "Post criado com sucesso!", post });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = Number(req.params.id);
+            if (isNaN(id)) return res.status(400).json({ message: "ID inválido" });
+            await PostService.delete(id);
+            return res.status(200).json({ mensagem: "Post deletado com sucesso" });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async Update(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = Number(req.params.id);
+            if (isNaN(id)) return res.status(400).json({ message: "ID inválido" });
+            const { title, userId } = req.body;
+            const user = await PostService.update(id, { title, userId });
+            return res.status(200).json({ mensagem: "Atualizado com sucesso", user });
+        } catch (error) {
+            next(error);
+        }
+    }
+}
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `Request, Response, NextFunction` | Tipos do Express para req/res/next | Assinatura dos métodos | Express router | Type safety nas handlers | — |
+| `Number(req.params.id)` | Converte o param da URL (string) pra número | Chamada do Service | URL params | Params sempre chegam como string | Extrair helper `parseId()` |
+| `isNaN(id)` | Valida se a conversão funcionou | `res.status(400)` | Validação de entrada | Evita passar `NaN` pro banco | Usar Zod/middleware de validação |
+| `next(error)` | Passa o erro pro errorHandler global | `errorHandler` middleware | Express error handling | Centraliza tratamento de erro | — |
+| `PostService.ListAll()` | Delega busca pra camada de serviço | Service → Repository → DB | PostService | Controller não acessa banco diretamente | — |
+| `res.status(200).json(...)` | Responde com status + corpo JSON | Cliente HTTP | HTTP | Comunica resultado da operação | Usar 201 no create |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+Router registrou a rota         Controller extrai dados do req         res.json() enviado
+Middleware de validação         Chama Service com dados limpos         ou next(err) dispara
+já rodou (se houver)            Aguarda Promise resolver               errorHandler global
+```
+
+---
+
+# **Assunto:** Middlewares — Validação, erro global e asyncHandler
+
+### O que é
+Funções intermediárias que rodam antes ou depois do controller, interceptando req/res para validar, tratar erro ou wrapper async.
+
+### Pra que serve
+Evita repetir `try/catch` e validações em todo controller — centraliza responsabilidades transversais.
+
+### Fluxo
+```
+req entra na rota
+        ↓
+validatePost/validateUser (checa body)
+        ↓
+asyncHandler (envolve fn async, captura rejeição)
+        ↓
+Controller executa
+        ↓
+[se erro] → errorHandler recebe e responde
+```
+
+### Exemplo
+```typescript
+// asyncHandler.ts
+export function asyncHandler(fn: RequestHandler) {
+    return (req: Request, res: Response, next: NextFunction) => {
+        Promise.resolve(fn(req, res, next)).catch(next);
+    };
+}
+
+// errorHandler.ts
+export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
+    if (err instanceof NotFoundError) return res.status(404).json({ message: err.message });
+    if (err.code === 'ER_DUP_ENTRY') return res.status(409).json({ message: 'Email já existente.' });
+    return res.status(500).json({ message: 'Erro interno no servidor.' });
+}
+
+// validatePost.ts
+export function validatePost(req: Request, res: Response, next: NextFunction) {
+    const { title, userId } = req.body;
+    if (!title || !userId) return res.status(400).json({ message: 'title e userId são obrigatórios.' });
+    next();
+}
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `asyncHandler(fn)` | Envolve handler async e faz `.catch(next)` | next(error) | errorHandler | Express não captura rejeição de Promises automaticamente (v4) | Desnecessário no Express 5 |
+| `Promise.resolve(...).catch(next)` | Garante que rejeição vira `next(err)` | errorHandler | Express pipeline | Sem isso, Promise rejeitada não é tratada | — |
+| `err instanceof NotFoundError` | Identifica erros de negócio específicos | `res.status(404)` | NotFoundError custom | Diferencia erro de negócio de erro genérico | Criar hierarquia de erros (AppError base) |
+| `err.code === 'ER_DUP_ENTRY'` | Detecta erro de unique constraint do MySQL | `res.status(409)` | MySQL driver | Transforma erro do banco em resposta semântica | — |
+| `validatePost` | Checa se campos obrigatórios estão no body | `next()` ou 400 | Router como middleware | Valida antes de chegar no controller | Substituir por Zod middleware |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+req chegou no router            validate* checa body fields            next() libera pro controller
+                                asyncHandler envolve fn                ou res.status(4xx) encerra
+                                errorHandler captura qualquer          res.status enviado pro cliente
+                                erro não tratado                       pipeline encerrado
+```
+
+---
+
+# **Assunto:** Models / Entidades — Mapeamento de classe TypeScript para tabela SQL
+
+### O que é
+Classes decoradas com `@Entity`, `@Column`, `@PrimaryGeneratedColumn` e relacionamentos que o TypeORM usa para gerar/consultar tabelas.
+
+### Pra que serve
+Substituem SQL DDL manual — você define a estrutura uma vez em TS e o TypeORM sabe criar queries, joins e validar tipos.
+
+### Exemplo
+```typescript
+// Post.ts
+@Entity('posts')
+export class Post {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column({ type: "varchar", length: 100, nullable: false })
+    title!: string;
+
+    @ManyToOne(() => User, (user) => user.posts)
+    user!: User;
+}
+
+// Usuario.ts
+@Entity("Usuario")
+export class User {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column({ length: 100, unique: true, nullable: false })
+    nome!: string;
+
+    @Column({ length: 150, unique: true, nullable: false })
+    email!: string;
+
+    @Column({ length: 255, nullable: false, select: false })
+    password!: string;
+
+    @OneToMany(() => Post, (post) => post.user)
+    posts: Post[];
+}
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `@Entity('posts')` | Marca a classe como tabela, define o nome | Mapeamento interno do TypeORM | DataSource `entities` | TypeORM precisa identificar o que é tabela | — |
+| `@PrimaryGeneratedColumn()` | Coluna PK auto-increment | Campo `id` | MySQL AUTO_INCREMENT | Identificador único de cada registro | Usar `uuid` para APIs públicas |
+| `@Column({ nullable: false })` | Coluna NOT NULL no banco | DDL da tabela | SQL schema | Garante integridade dos dados | Definir `default` quando faz sentido |
+| `@Column({ select: false })` | Exclui o campo de SELECTs por padrão | Queries normais | UserRepository | `password` não vaza em responses acidentais | — |
+| `@ManyToOne(() => User, ...)` | Post pertence a um User (FK) | Coluna `userId` no banco | User.posts | Relacionamento N:1 — muitos posts por user | — |
+| `@OneToMany(() => Post, ...)` | User tem muitos Posts | Join nas queries com `relations` | Post.user | Relacionamento 1:N — acesso reverso | Lazy loading opcionalmente |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+reflect-metadata ativo          TypeORM lê metadados dos decorators    Mapa interno: classe ↔ tabela
+DataSource inicializado         Registra colunas, tipos, relações      Queries geradas automaticamente
+                                Verifica synchronize/migrations        FK criada no banco (userId)
+```
+
+---
+
+# **Assunto:** Repository — Camada de acesso ao banco isolada
+
+### O que é
+Objeto que centraliza todas as queries de uma entidade, separando acesso a dados do restante da aplicação.
+
+### Pra que serve
+Se você trocar o banco ou o ORM, só mexe no repository — Service e Controller não sabem nada do banco.
+
+### Exemplo
+```typescript
+// PostRepository.ts
+import { Post } from "../models/Post";
+import { AppDataSource } from "../config/database";
+
+const repository = AppDataSource.getRepository(Post);
+
+export const PostRepository = {
+    async findAll() {
+        return repository.find({ relations: ['user'] });
+    },
+    async findById(id: number) {
+        return repository.findOne({ where: { id }, relations: ['user'] });
+    },
+    async create(data: Post) {
+        const post = repository.create(data);
+        return repository.save(post);
+    },
+    async save(post: Post) {
+        return repository.save(post);
+    },
+    async delete(id: number) {
+        return repository.delete(id);
+    }
+};
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `AppDataSource.getRepository(Post)` | Pega o repository TypeORM da entidade Post | Variável `repository` | AppDataSource | Ponto de entrada para queries da entidade | — |
+| `repository.find({ relations: ['user'] })` | SELECT com JOIN em user | Array de Posts | Post.user (ManyToOne) | Traz os dados relacionados junto | Usar `select` para limitar campos |
+| `repository.findOne({ where: { id } })` | SELECT WHERE id = ? | Post ou null | — | Busca registro único por PK | Lançar erro aqui ou no Service |
+| `repository.create(data)` | Instancia a entidade sem salvar | Objeto Post em memória | Model Post | `save` precisa de uma entidade, não de POJO | — |
+| `repository.save(post)` | INSERT ou UPDATE dependendo do estado | Banco de dados | MySQL | Persiste o objeto | — |
+| `repository.delete(id)` | DELETE WHERE id = ? | Resultado com `affected` | — | Remove registro | Soft delete com `@DeleteDateColumn` |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+AppDataSource inicializado      getRepository() pega o gerenciador     repository pronto para queries
+Entidade registrada no DS       find/findOne/save/delete geram SQL     Query executada no MySQL
+                                Resultado mapeado de volta pra classe  Objeto entidade retornado
+```
+
+---
+
+# **Assunto:** Service — Lógica de negócio entre Controller e Repository
+
+### O que é
+Camada que contém as regras de negócio — valida existência de registros, orquestra chamadas de repositórios e lança erros semânticos.
+
+### Pra que serve
+Mantém o Controller burro (só HTTP) e o Repository burro (só SQL) — quem sabe o "porquê" é o Service.
+
+### Exemplo
+```typescript
+export const PostService = {
+    async create(data: { title: string; userId: number }) {
+        const user = await UserRepository.findById(data.userId);
+        if (!user) throw new NotFoundError("Usuário não encontrado");
+
+        const post = await PostRepository.create({ title: data.title, user } as any);
+        return post;
+    },
+
+    async update(id: number, data: { title?: string; userId?: number }) {
+        const post = await PostRepository.findById(id);
+        if (!post) throw new NotFoundError("Post não encontrado");
+
+        if (data.title) post.title = data.title;
+        if (data.userId) {
+            const user = await UserRepository.findById(data.userId);
+            if (!user) throw new NotFoundError("Usuário não encontrado");
+            post.user = user;
+        }
+        await PostRepository.save(post);
+        return post;
+    }
+};
+```
+
+### 🔍 Tabela mastigada
+
+| Linha / Elemento | O que faz | Pra onde vai | Conecta com | Pra que existe | Melhoria |
+|------------------|-----------|--------------|-------------|----------------|----------|
+| `throw new NotFoundError(...)` | Lança erro semântico de negócio | errorHandler via `next(err)` | errorHandler | Diferencia 404 de 500 | Criar AppError com statusCode embutido |
+| `UserRepository.findById(data.userId)` | Verifica se o user existe antes de criar post | Variável `user` | UserRepository | Garante integridade referencial na camada de app | — |
+| `if (data.title) post.title = data.title` | Só atualiza se o campo foi enviado | Entidade `post` | PATCH semântico | Evita sobrescrever com `undefined` | Usar spread + Object.assign cuidadosamente |
+| `PostRepository.save(post)` | Persiste após modificar em memória | Banco via Repository | TypeORM | `save` faz UPDATE quando a entidade já tem `id` | — |
+| `bcrypt.hash(data.password, 14)` | Hasheia a senha antes de salvar | Campo `password` | bcrypt | Nunca salvar senha em texto puro | 14 rounds é alto; 10-12 é padrão aceitável |
+| `omitPassword(user)` | Remove o campo password do retorno | Response JSON | Objeto User | Garante que senha nunca vaze na API | Usar `@Exclude()` do class-transformer |
+
+### 🧠 Por baixo
+
+```
+[antes]                         [durante]                              [depois]
+──────────────────              ──────────────────────────             ──────────────────
+Controller chamou com dados     Service busca entidades relacionadas   Objeto pronto retornado
+vindos do body/params           Aplica regras (existência, hash, etc)  ao Controller → res.json
+                                Chama Repository para persistir        ou NotFoundError → errorHandler
+```
+
+---
+
+# **Assunto:** Rotas — Registro de endpoints e bind de controllers
+
+### O que é
+Arquivo que conecta cada método HTTP + path a um método de controller, aplicando middlewares de validação onde necessário.
+
+### Exemplo
+```typescript
+import { Router } from "express";
+import { UserController } from "../controllers/UsuarioController";
+import { validateUser } from "../middlewares/validateUser";
+import { PostController } from "../controllers/PostController";
+
+const routes = Router();
+const userController = new UserController();
+const postController = new PostController();
+
+routes.get('/users', userController.list.bind(userController)
