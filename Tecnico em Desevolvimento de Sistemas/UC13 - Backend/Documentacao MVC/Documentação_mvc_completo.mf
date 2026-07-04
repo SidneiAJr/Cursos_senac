@@ -11,7 +11,7 @@ Sem ele, o TypeORM não sabe com qual banco falar, nem quais classes virar tabel
 .env (DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME)
         ↓
 dotenv.config() popula process.env
-        ↓
+        ↓i
 new DataSource({ ...configs, entities: [User, Post] })
         ↓
 AppDataSource exportado → usado nos repositories
