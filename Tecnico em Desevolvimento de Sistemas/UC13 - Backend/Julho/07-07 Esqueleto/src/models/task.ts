@@ -1,18 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
-@Entity("Usuario")
+@Entity("Task")
 export class Usuario {
 
 @PrimaryGeneratedColumn()
 id:number
 
 @Column({length:100, nullable:true , type: "varchar"})
-nome:string
+title:string
 
-@Column({length:100, nullable:true , type: "varchar",unique:true})
-email:string
-
-@Column({length:255, nullable:true , default: 0, type: "varchar"})
-password:string
+@Column({length:100, nullable:true , type: "varchar"})
+descricao:string
 
 }
