@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { AppDataSource } from './config/database';
 import { errorHandler } from './middlewares/errorHandler';
+import UserRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(UserRoutes);  
+
 
 app.get('/', (req, res) => {
     res.json({ message: 'API rodando!' });
