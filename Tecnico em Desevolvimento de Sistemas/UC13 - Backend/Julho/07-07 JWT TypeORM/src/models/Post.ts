@@ -1,14 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { User } from "./Usuario"; 
 
-@Entity('posts')  // ✅ Nome da tabela no banco
+@Entity('posts')  
 export class Post {
-    @PrimaryGeneratedColumn()  // ✅ Chave primária auto-increment
+    @PrimaryGeneratedColumn()  
     id!: number;
 
-    @Column({ type: "varchar", length: 100, nullable: false })  // ✅ Título obrigatório
+    @Column({ type: "varchar", length: 100, nullable: false })  
     title!: string;
 
-    @ManyToOne(() => User, (user) => user.posts)  // ✅ Muitos posts pertencem a um usuário
+    @ManyToOne(() => User, (user) => user.posts, {nullable:false})  
     user!: User;
 }

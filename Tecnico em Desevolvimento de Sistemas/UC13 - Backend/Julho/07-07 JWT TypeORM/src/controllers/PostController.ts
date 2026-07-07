@@ -67,8 +67,8 @@ export class PostController{
                            message: "ID inválido"
                        });
                    }
-                   const {title, userId} = req.body
-                   const user = await PostService.update(id,{title, userId});
+                   const {title} = req.body
+                   const user = await PostService.update(id,{title});
                    return res.status(200).json({mensagem:"Usuario Atualizado com sucesso",user});
             } catch (error) {
                  next(error);
