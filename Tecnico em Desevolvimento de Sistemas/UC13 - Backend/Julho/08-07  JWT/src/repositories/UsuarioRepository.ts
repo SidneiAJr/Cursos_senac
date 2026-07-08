@@ -23,5 +23,8 @@ export const UserRepository = {
     async delete(id: number) {
         return repository.delete(id);
     },
+    async findByEmail(email: string) {
+        return repository.findOne({ where: { email } })
+    },
 };
 

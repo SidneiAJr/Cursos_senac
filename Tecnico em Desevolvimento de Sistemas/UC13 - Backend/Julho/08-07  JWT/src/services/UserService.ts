@@ -1,8 +1,10 @@
 import { UserRepository } from "../repositories/UsuarioRepository";
 import bcrypt from 'bcrypt';
 import { omitPassword } from "../utils/omitPassword";
+import {generateToken} from "../utils/Jwt"
 
 export class NotFoundError extends Error{}
+export class UnauthorizedError extends Error {}
 
 export const UserService={
     async ListAll(){
@@ -45,6 +47,25 @@ export const UserService={
        if(data.password) user.password = await bcrypt.hash(data.password,14)
        const updatedUser = await UserRepository.create(user)
        return omitPassword(updatedUser)
-   }
+   },
 
+   async login(data: { email: string, password: string }) {
+        const user = await UserRepository.findByEmail(data.email)
+        if (!user) {
+            throw new NotFoundError("Usuário não encontrado!")
+        }
+
+        const passwordIsValid = await bcrypt.compare(data.password, user.password)
+        if (!passwordIsValid) {
+            throw new UnauthorizedError("Senha inválida!")
+        }
+        const token = generateToken({
+            id: user.id,
+            email: user.email
+        })
+        return {
+            user: omitPassword(user),
+            token
+        }
+    }
 }
