@@ -1,16 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
+import {createUserScheme} from "../schemas/UsuarioSchemas"
 
 export function validateUser(req: Request, res: Response, next: NextFunction) {
-    const { nome, email, password } = req.body;
-    if (!nome || !email || !password) {
-        return res.status(400).json({
-            message: 'Os campos nome, email e password são obrigatórios.',
-        });
+   
+    const result = createUserScheme.safeParse(req.body)
+    if(!result.success){
+        return res.status(400).json({errors: result.error.flatten().fieldErrors})
     }
-    if (password.length < 8) {
-        return res.status(400).json({
-            message: 'A senha deve ter pelo menos 8 caracteres.',
-        });
-    }
+    req.body = result.data;
     next();
 }

@@ -1,7 +1,8 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import { AppDataSource } from './config/database';
-import routes from './routes/index'
+import userRoutes from './routes/userRoutes';
+import postRouter from './routes/postRoutes';
 import { errorHandler } from './middlewares/errorHandler';
 
 dotenv.config();
@@ -12,12 +13,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use(routes);  
+app.use(userRoutes);
+app.use(postRouter);
 
 app.get('/', (req, res) => {
     res.json({ message: 'API rodando!' });
 });
-
 
 AppDataSource.initialize()
     .then(() => {
