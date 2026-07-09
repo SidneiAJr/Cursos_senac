@@ -14,7 +14,7 @@ export function generateToken(payload:Payload){
     if(!JWT_Secret){
       throw new Error("JWT Ausente!")
     }
-    return jwt.sign(payload,JWT_Secret!,{
+    return jwt.sign(payload,JWT_Secret,{
         expiresIn: Number(JWT_EXPIRES_IN)
     })
 }
