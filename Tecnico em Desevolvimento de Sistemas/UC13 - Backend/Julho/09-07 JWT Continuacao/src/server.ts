@@ -4,6 +4,7 @@ import { AppDataSource } from './config/database';
 import userRoutes from './routes/userRoutes';
 import postRouter from './routes/postRoutes';
 import { errorHandler } from './middlewares/errorHandler';
+import authUser from "./routes/auth.routes"
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use(userRoutes);
 app.use(postRouter);
+app.use(authUser)
 
 app.get('/', (req, res) => {
     res.json({ message: 'API rodando!' });
