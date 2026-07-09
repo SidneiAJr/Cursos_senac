@@ -51,20 +51,17 @@ export const UserService={
 
    async login(data: { email: string, password: string }) {
 
-        const user = await UserRepository.findByEmailWithPassword(data.email)
+        const user = await UserRepository.findByEmail(data.email)
 
-        if (!user) {
-            throw new NotFoundError("Usuário não encontrado!")
-        }
+        const passwordIsValid = await bcrypt.compare(data.password, user!.password)
+        
+        if(!user || !passwordIsValid) throw new NotFoundError("Informações Incorretas")
 
-        const passwordIsValid = await bcrypt.compare(data.password, user.password)
-        if (!passwordIsValid) {
-            throw new UnauthorizedError("Senha inválida!")
-        }
         const token = generateToken({
             id: user.id,
             email: user.email
         })
+        
         return {
             user: omitPassword(user),
             token
