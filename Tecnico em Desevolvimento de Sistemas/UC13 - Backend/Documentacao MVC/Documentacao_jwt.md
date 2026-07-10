@@ -1,232 +1,254 @@
-# O que é o JWT? O que significa? Onde ele habita? Descubra hoje no globo reporter!
+# O que é o JWT? O que significa? Onde ele vive? Do que se alimenta? Descubra hoje no Globo Repórter.
 
-JWT siginica jason Web Token. ELe é um codigo gerado e salvo no navegador que, entre outras coisas, guarda as informações de um usuário (exemplo: `{id: 1, email: "teste@gmail.com"}`)
+JWT significa **JSON Web Token**. Ele é um código gerado e salvo no navegador que, entre outras coisas, guarda as informações de um usuário (exemplo: `{ id: 1, email: "Sid Moreira" }`).
 
-Como ele se parece? Ele se parece com isso aqui:
+## Como ele se parece?
+
+Ele se parece com isso aqui:
 
 `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhbGljZUBtYWlsLmNvbSJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
 
-Para que ele serve? Ele serve para guardar informações de qual usuário está logado. Assim, nós podemos fazer requisições(exemplo, criar um post) sem pedir para que logue novamente toda vez. Também podemos garantir que um usuário crie, atualiza, delete posts APENAS PARA SI MESMO ou seja apenas SUAS informações e não a de outro, etc...
+## Para que ele serve?
 
-Por exemplo: Vamos pensar no funcionamento de uma rede social. Imagine que você acessa o instagram e quer criar um post. Você primeiro precisa ter uma conta e logar com ela. Nós usamos o jwt justamente para fazer isso: Logar. Outra coisa, você só consegue criar posts para SI MESMO. Não há como criar ou deletar, por exemplo, o post de outro usuário. O JWT também garante isso, pois ele informa qual o id do usuário que está logado.
+Ele serve para guardar informações de qual usuário está logado. Assim, nós podemos fazer requisições (por exemplo, criar um post) sem precisar que o usuário faça login novamente toda vez. Também podemos garantir que um usuário crie, atualize e delete posts apenas para si mesmo ou veja apenas as suas informações, e não as de outros usuários.
 
+Por exemplo, vamos pensar no funcionamento de uma rede social. Imagine que você acessa o Instagram e quer criar um post. Você primeiro precisa ter uma conta e fazer login com ela. Nós usamos o JWT justamente para isso: manter o usuário autenticado após o login.
 
-O TOKEN em si é divido em 3 partes . As mais importantes para nós são as duas ukltimas: O payload e o signature. 
+Outra vantagem é que você só consegue criar, editar ou deletar os seus próprios posts. Não há como criar, editar ou deletar, por exemplo, o post de outro usuário. O JWT também ajuda a garantir isso, pois ele informa qual é o ID do usuário que está autenticado. Dessa forma, o sistema consegue verificar se aquele usuário realmente é o dono do post antes de permitir qualquer alteração.
 
-O payload é a parte do meio.É ali que fica armazenado as informações com id e email do usuário.
+## Como o JWT é dividido?
 
-O Signature é a terceira parte. Ali fica armazenado o "segrado", que é um código que cada sistema tem e seu. Ele garante  que aquele token pertence aquele sistema. Se for modificado, por exemplo, ele é invalido. Isso evita que uma pessoa pegue qualquer token  e tente usar em nosso sistema.
+O token em si é dividido em três partes. As mais importantes para nós são as duas últimas: o **Payload** e a **Signature**.
 
-Como utilizar ao nosso projeto? Vamo lá:
+O **Payload** é a parte do meio. É ali que ficam armazenadas informações como o ID e o e-mail do usuário.
 
-1- Primeiro é preciso instalar as dependências
+A **Signature** é a terceira parte. Nela fica armazenada uma assinatura gerada utilizando um **segredo** (_secret_), que é um código exclusivo de cada sistema. Ela garante que aquele token pertence ao sistema e que não foi alterado. Se o conteúdo do token for modificado, a assinatura deixa de ser válida e o token é invalidado. Isso evita que uma pessoa altere um token ou tente utilizar um token falso em nosso sistema.
 
- ```bash
-npm install jsonwebtoken @types/josenwebtoken
-```
-2 - Para usarmos o JWT, agora vamos criar um arquivos chamado `jwt.ts` dentro da pasta `utils`.
+# Como utilizar no nosso projeto? Vamos lá!
 
-Dentro deste arquivo, precisamos então:
+## PASSO 1 - Primeiro, é preciso instalar as dependências.
 
-2.1 - importar tudo que é necessário: O JWT e também o dotenv(pois teremos variáveis importantes lá)
-```ts
-    import jwt from 'jasonwebtoken'
-    import * as dotenv from 'dotenv'
+```bash
+npm install jsonwebtoken
+npm install -D @types/jsonwebtoken
 ```
 
-2.2 - Precisamos carregar as variaveis do .env para o objeto process.env (ele é quem nos fornece os valores depois)
+## PASSO 2 - Para usarmos o JWT, agora vamos criar um arquivo chamado `jwt.ts` dentro da pasta `utils`.
 
+Dentro desse arquivo, precisamos:
 
-```ts 
-dotenv.config() // sem isso, não temos acesso as variaveis dop .env
-// use sempre o mesmo nome e mesma ordem que estão no .env
-
-const {JWT_SECRET, JWT_EXPIRES_IN} = process.env
-```
-
-
-2.3 - No .env, precisamos ter variáveis correspondentes:
-
+#### 2.1 - Importar tudo o que é necessário: o JWT e o dotenv (pois teremos variáveis importantes nele).
 
 ```ts
-
-DB_HOST = locashost
-DB_PORT = 3306
-DB_USER = root
-DB_PWD = root
-DB_NAME = insta_db
-
-PORT = 3000
-
-// Essas sãs as novas variaveis de ambiente
-
-JWT_SECRET = minhaChaveSecreta // serve para converter depois na assinatura do token (signature)
-JWT_EXPORT_IN = 86400 // identifica por quanto tempo o token é valido 
-
+import jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
 ```
-2.4 - Voltando ao arquivo jwt.ts, vamos criar uma interface chamada Payload para que nós esperamos que nosso token receba: 
+
+#### 2.2 - Precisamos carregar as variáveis do arquivo `.env` para o objeto `process.env` (é ele quem nos fornece os valores depois).
+
+```ts
+dotenv.config(); // Sem isso aqui, não temos acesso às variáveis do .env.
+
+// Pegamos então as variáveis do .env.
+// Use sempre os mesmos nomes das variáveis definidas no arquivo .env.
+const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
+```
+
+#### 2.3 - No arquivo `.env`, precisamos ter as variáveis correspondentes.
+
+```ts
+DB_HOST = localhost;
+DB_PORT = 3306;
+DB_USER = root;
+DB_PWD = root;
+DB_NAME = rede_social;
+
+PORT = 3000;
+
+// Estas são as novas variáveis de ambiente.
+JWT_SECRET = chaveSecreta123; // Serve para converter depois na assinatura do token (Signature).
+JWT_EXPIRES_IN = 86400; // Identifica por quanto tempo o token é válido (nesse caso, um dia = 86400 segundos).
+```
+
+#### 2.4 - Voltando ao arquivo `jwt.ts`, vamos criar uma interface chamada `Payload` para representar o que esperamos que nosso token receba.
 
 ```ts
 interface Payload {
-    id: number
-    email: string
-}
-```
-2.5 - Agora, vamos criar uma função que gera um novo token. Geralmente, chamamos esse método dentro de uma função login, etc..
-
-
-```ts
-// Nunca se esqueça do 'export' ou não poderemos usar está função em outros arquivos
-// Nosso método recebe por parametro um objeto que deve ter id e email(por causa da nossa inteface)
-const function generateTokrn(payload: Payload){
-    // o metodo sign() da biblioteca do jwt serve para criar um novo token.
-    // Para isso, passamos para ele, nesta ordem: 
-    // 1 - o payload com as informações do usuário
-    // 2 - O  `segredo` que está no JWT_SECRET
-    // 2 - Um objeto(ou seja, outra 'chaves': {} que contém a opção 'expiresIn', com o valor de JWT_EXPIRES_IN. Atenção: Se estiver no .env algo como 'JWT_EXPIRES_IN = 86400', sign() você precisa chama-lo dentro de Number(), para converte-lo
-    return jwt.sign(payload, JWT_SECRET!, {
-        expiresIn: Number(JWT_EXPIRES_IN)
-    })
-    // O argumnto com o JWT_SECRET tem um '!', no final pois o Typescript sabe que pode ser que o .env não tenha essa informação . Ao colocar o ponto de exclamação, é como se dissémos: "tem sim, confia!"
+  id: number;
+  email: string;
 }
 ```
 
-2.6 - Criamos a função que gera o  token. Agora vamos criar a funçãoque analisa se ele é válido ou não: 
+#### 2.5 - Agora vamos criar o método que gera o novo token. Geralmente, chamamos esse método dentro de uma função de login.
 
 ```ts
-export function verifyToken(token: string){
-    try {
-        // chamamos a função verify() da biblioteca jwt para fazer a verfiricação
-        // O primeiro argumento é o própio token
-        // O segundo é o JWT_SECRET
-        // Se for válido, a função retorna as informações do usuario
-        return jwt.verify(token, JWT_SECRET!) 
-    }catch {
-        // Se não for retorna nulo 
-        return null
-    }
+// Nunca esqueça do export, ou não poderemos usar essa função em outros arquivos.
+// Nosso método recebe por parâmetro um objeto que deve ter id e email (por causa da nossa interface).
+
+// O método sign da biblioteca JWT gera um token.
+// Precisamos passar como argumentos:
+/*
+1 - As informações do usuário, que vêm do payload.
+2 - O segredo (JWT_SECRET).
+3 - Um objeto contendo a opção "expiresIn", cujo valor será a variável JWT_EXPIRES_IN do arquivo .env.
+
+Se no .env estiver algo como "JWT_EXPIRES_IN = 86400", no sign() você precisa chamá-lo dentro de Number() para convertê-lo de string para número.
+*/
+
+export function generateToken(payload: Payload) {
+  return jwt.sign(payload, JWT_SECRET!, {
+    expiresIn: Number(JWT_EXPIRES_IN),
+  });
 }
 
+// O argumento JWT_SECRET possui um "!" no final porque o TypeScript considera
+// que essa variável pode ser undefined. Ao colocar o ponto de exclamação,
+// é como se disséssemos: "tem sim, confia no pai".
 ```
-EXTRA: Se quiser testar, no mesmo arquivos você pode chamar os dois métodos, primeiro o generate e depois o verify: 
+
+#### 2.6 - Criamos a função que gera o token. Agora vamos criar a função que analisa se ele é válido ou não.
 
 ```ts
-// gere um token com infos que quiser
-const token = generaToken({id: 1, email: "leo@gmail.com"})
-console.log(token)
+export function verifyToken(token: string) {
+  try {
+    // Chamamos a função verify() da biblioteca JWT para fazer a verificação.
+    // O primeiro argumento é o próprio token.
+    // O segundo é o JWT_SECRET.
+    // Se o token for válido, a função retorna as informações do usuário.
 
-// Depois, confira se i token é valido(Se for o token que acabamos de gerar, sempre vai ser válido)
-const tokenValido = verifyToken(token)
-console.log(tokenValido) // Se mostrar as infos do usuario o token é valido, se não for mostra null
+    return jwt.verify(token, JWT_SECRET!);
+  } catch {
+    return null;
+  }
+}
+```
 
-``` 
-Depoi, rode com o comando:
+### EXTRA: Se quiser testar, no mesmo arquivo você pode chamar os dois métodos: primeiro o `generateToken()` e depois o `verifyToken()`.
+
+```ts
+const token = generateToken({ id: 3, email: "gabi123@gmail.com" });
+console.log(token);
+
+const valido = verifyToken(token);
+console.log(valido);
+
+// Se for válido, mostra as informações do usuário.
+```
+
+**Obs.:** No exemplo acima, passamos a variável `token` para o `verifyToken()`. Se você passar uma string vazia (`""`), a função retornará `null`, pois não haverá um token válido para verificar.
+
+Depois, rode o comando no terminal:
 
 ```bash
 ts-node-dev src/utils/jwt.ts
-
 ```
 
-PASSO 3 - Se não tivermos uma função que procura por email no Userrepository, precismaos criá-la. Se já tem, podemos pular esta etapa. vá até UserRepository e adiciona e a seguinte função:
-
-```ts 
-async findbyId(email: string){
-    // findOne() é uma função do typeORM que retorna u unico resultado (se usássemos apenas find() ele retorna um Array!)
-    return repo.findOne({where: email})
-
-}
-
-```
-
-PASSO 4 - Na camada Service, vamos precisar adicionar mais algumas coisas.
-
-4.1 - Adicionar uma extensão da classe 'error' que vamos dar o nome de "UnauthorizedError' . Adicione a segunnte linha em 'Userservice.ts'
+## PASSO 3 - Se não tivermos uma função que procura por e-mail no `UserRepository`, precisamos criá-la. Se já existir, podemos pular esta etapa. Vá até o `UserRepository` e adicione a seguinte função:
 
 ```ts
-// Não é obrigatorio criar essa classe filha de error. Porem, ao fazermos isso, quandi este erro for laçadom sabemos exatamente do que se trata
+async findByEmail(email: string) {
+  return repo.findOne({ where: { email } });
+},
+```
+
+## PASSO 4 - Na camada Service, vamos precisar adicionar mais algumas coisas.
+
+#### 4.1 - Adicionar uma extensão da classe `Error`, que vamos chamar de `UnauthorizedError` (_Unauthorized = Não autorizado_). Adicione a seguinte linha no `UserService.ts`:
+
+```ts
+// Não é obrigatório criar essa classe filha de Error. Porém, ao fazermos isso,
+// quando esse erro for lançado, sabemos exatamente do que se trata.
 export class UnauthorizedError extends Error {}
-
 ```
 
-4.2 - Vamos adicionar o método de login dentro de 'UserService.ts'. Este método vai receber um email e uma senha, validar se existe o email usando o 'UserRepository.findByEmail()' que criamos há pouco, depois valida atraés do método bcrypt.compare() se a senha bate com a criptografia dela do banco, e, se tudo estiver de acordo, ai sim gera um token chamado o metodo 'jwt.generateToken()' que nós criamos antes. Então, no arquivo 'UserService.ts' crie:
+#### 4.2 - Vamos adicionar o método de login no `UserService.ts`. Esse método vai receber um e-mail e uma senha, validar se o e-mail existe usando `UserRepository.findByEmail()`, que criamos há pouco, depois validar, através do método `bcrypt.compare()`, se a senha informada corresponde à senha criptografada no banco. Se tudo estiver correto, aí sim ele gera um token chamando o método `generateToken()` que criamos anteriormente.
 
-
-```ts 
-async login(data: {email: string, password: string}){
-
-    // Verificamos se o email existe 
-    // Precimaos do await já que o metodo findByEmail() é async 
-    const user = await UserRepository.findByEmail(data.email)
-
-    
-    // Verifica se a sneha esta correta
-    // data.password pega a senha que enviamos como parametro
-    // user.password pega a senha que está no objeto user, que é usuário que encontramos com o metodo findbyEmail, que retorna um user
-    const isValid = await bcrypt.compare(data.password, user.password)
-
-    // Note que não diferencimaos para proteger contra possiveis invasões 
-    if(!user || !password) throw new NotFoundError("Informações incorretas!")
-
-    const token = jwt.generateToken({
-        user.id, user.email
-    })
-    console.log(token)
-    return {
-        user: omitPassword(user), // Chamamos este metodo que criamos anteriormente, a senha do user não aparece na resposta do servidor(importante!)
-        token
-    }
-}
-
-```
-
-PASSO 5 - Agora, depois de services, vamos para a camada controllers, onde vamos criar um arquivo chamado "Authcontroller.ts" ele ficara responsavel pela parte de login. Dentro dele, insira:
-
-5.1  - As importações:
+Então, no arquivo `UserService.ts`, crie:
 
 ```ts
-import {Request, Response, NextFunction} from ''
-import {UserService} from '../service/UserService.ts'
+// Recebe o e-mail e a senha como parâmetros.
+async login(data: { email: string; password: string }) {
+  // Verificamos se o e-mail existe.
+  // Precisamos do await, já que o método findByEmail() é assíncrono
+  // (ele precisa de um tempo para buscar as informações no banco).
+
+  const user = await UserRepository.findByEmail(data.email);
+
+}
 ```
-5.2 - O método de login:
+
+## PASSO 5 - Agora, depois da camada **Service**, vamos para a camada **Controller**, onde vamos criar um arquivo chamado `AuthController.ts`. Ele ficará responsável pela parte de login.
+
+## 5.1 - Os imports
+
+```ts
+import { NextFunction, Request, Response } from "express";
+import { UserService } from "../services/UserService";
+```
+
+## 5.2 - O método de login
+
 ```ts
 export class AuthController {
-    async login(req: Request, res: Response, next: NextFunction){
-        try {
-            const {email, password} = req.body // Memsa ordem e nomes
-            const result = await UserService.login({email, password})
-            return res.status(200).json(result)
-        }catch(Error){
-            next(error) // Captura qualquer erro que for lançado pra o proximo 
-        }
+  async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      // Pegamos o e-mail e a senha enviados pelo body da requisição.
+      const { email, password } = req.body;
+
+      // Chamamos o método de login da camada Service.
+      const result = await UserService.login({ email, password });
+
+      // Se tudo der certo, retornamos o resultado.
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
     }
+  }
 }
-
-```
-PASSO 6 - Agora, precimos criar a rota do auth. Porem , ao contrário do que fazíamos antes, não vamos por todas as rotas em um arquivo. Vamos dividi-las entre: Rotas de auth, rotas de user,rotas de post e ai um arquivo principal que reúne todas elas. vamos lá:
-6.1 - Em 'routes', crie um arquivo chamado "auth.router.ts". Dentro dele, coloque as importações
-```ts
-import {Router} from "express"
-import {authController} from "../controller/AuthController"
 ```
 
+## PASSO 6 - Agora, precisamos criar as rotas de autenticação. Porém, ao contrário do que fazíamos antes, não vamos colocar todas as rotas em um único arquivo. Vamos separá-las entre: rotas de autenticação (**Auth**), rotas de usuários (**User**), rotas de posts (**Post**) e um arquivo principal que reunirá todas elas.
 
-6.2 - Crie o objeto router e o authcontroller:
+### 6.1 - Dentro da pasta `routes`, crie um arquivo chamado `auth.routes.ts`.
 
-```ts
-    const router = Router() // Objeto do router do express (Ele) nos permite acessar os metodos para criar as rotas
-    const authCOntroller = new AuthController() // objeto da classe authcontroller
-```
-6.3 - Criamos a rota: 
+Dentro dele, faça os imports:
 
 ```ts
-    router.post("/login", authController.login.bind(authController))
-    export default router
+import { Router } from "express";
+import { AuthController } from "../controllers/AuthController";
 ```
 
-6.4 - Agora preciamos ir até index.ts e chamar as rotas de auth lá:
+### 6.2 - Crie o objeto `router` e uma instância do `AuthController`.
+
 ```ts
-import authRouter from "./auth.routes"
-const router = Router()
-router.use("/auth", authRoutes)
-export default router
+const router = Router();
+const authController = new AuthController();
+```
+
+### 6.3 - Agora, vamos criar a rota de login.
+
+Essa rota receberá uma requisição do tipo **POST** para `/login`. Quando ela for chamada, executará o método `login()` do `AuthController`.
+
+```ts
+router.post("/login", authController.login.bind(authController));
+```
+
+### 6.4 - Por fim, exporte o `router` para que ele possa ser utilizado em outros arquivos.
+
+```ts
+export default router;
+```
+
+O arquivo `auth.routes.ts` ficará assim:
+
+```ts
+import { Router } from "express";
+import { AuthController } from "../controllers/AuthController";
+
+const router = Router();
+const authController = new AuthController();
+
+router.post("/login", authController.login.bind(authController));
+
+export default router;
 ```
