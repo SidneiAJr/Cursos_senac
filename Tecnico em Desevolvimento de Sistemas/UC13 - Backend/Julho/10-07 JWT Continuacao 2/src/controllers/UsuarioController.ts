@@ -29,7 +29,7 @@ export class UserController{
       try {
         const {nome,email,password} = req.body
         const user = UserService.create({nome,email,password})
-        return res.status(201).json({mensagem: "Usuario criado com sucesso!"})
+        return res.status(201).json({mensagem: "Usuario criado com sucesso!",user})
       } catch (error) {
          next(error)
       }

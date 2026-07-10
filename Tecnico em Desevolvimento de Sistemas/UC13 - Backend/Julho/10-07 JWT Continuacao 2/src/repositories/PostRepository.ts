@@ -25,5 +25,8 @@ export const PostRepository = {
     },
     async delete(id: number) {
         return repository.delete(id);
+    },
+    async listMyPosts(userid:number){
+       return PostRepository.findById(userid)
     }
 };

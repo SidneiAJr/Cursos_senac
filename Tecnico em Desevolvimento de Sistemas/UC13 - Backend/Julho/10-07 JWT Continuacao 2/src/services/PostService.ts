@@ -64,5 +64,18 @@ export const PostService = {
         await PostRepository.save(post);
 
         return post;
+    },
+
+    async ListMyposts(userId: number){
+       if (!userId) {
+      throw new NotFoundError("Usuário não autenticado");
     }
+
+    const posts = await PostRepository.findById(userId);
+
+    return posts;
+  }
+
+
+    
 }
