@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>📊 Dashboard</h1>
+        <div>
+            <span id="userName">Usuário</span>
+            <button onclick="logout()">Sair</button>
+        </div>
+        <hr>
+    </header>
+
+    <!-- Menu -->
+    <nav>
+        <button onclick="showSection('posts')">📝 Posts</button>
+        <button onclick="showSection('createPost')">✏️ Criar Post</button>
+        <button onclick="showSection('myPosts')">📋 Meus Posts</button>
+        <button onclick="showSection('profile')">👤 Perfil</button>
+        <hr>
+    </nav>
+
+    <!-- Seção Posts -->
+    <section id="postsSection">
+        <h2>Todos os Posts</h2>
+        <div id="postsList">
+            <p>Carregando posts...</p>
+        </div>
+    </section>
+
+    <!-- Seção Criar Post -->
+    <section id="createPostSection" style="display:none;">
+        <h2>Criar Novo Post</h2>
+        <form id="postForm" onsubmit="createPost(event)">
+            <label for="postTitle">Título do Post:</label><br>
+            <input type="text" id="postTitle" placeholder="Digite o título" required size="50"><br><br>
+            <button type="submit">Publicar Post</button>
+        </form>
+        <div id="createPostMessage"></div>
+    </section>
+
+    <!-- Seção Meus Posts -->
+    <section id="myPostsSection" style="display:none;">
+        <h2>Meus Posts</h2>
+        <div id="myPostsList">
+            <p>Carregando meus posts...</p>
+        </div>
+    </section>
+
+    <!-- Seção Perfil -->
+    <section id="profileSection" style="display:none;">
+        <h2>Meu Perfil</h2>
+        <div id="profileInfo">
+            <p><strong>ID:</strong> <span id="userId">-</span></p>
+            <p><strong>Nome:</strong> <span id="userNome">-</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+        </div>
+        <hr>
+        <h3>Atualizar Perfil</h3>
+        <form id="updateProfileForm" onsubmit="updateProfile(event)">
+            <label for="updateNome">Nome:</label><br>
+            <input type="text" id="updateNome" placeholder="Novo nome" required><br><br>
+            <label for="updateEmail">Email:</label><br>
+            <input type="email" id="updateEmail" placeholder="Novo email" required><br><br>
+            <label for="updateSenha">Nova Senha (opcional):</label><br>
+            <input type="password" id="updateSenha" placeholder="Deixe em branco para manter"><br><br>
+            <button type="submit">Atualizar Perfil</button>
+        </form>
+        <div id="updateProfileMessage"></div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <hr>
+        <p>Dashboard - Sistema de Posts</p>
+    </footer>
