@@ -6,7 +6,7 @@ const nomeInput = document.getElementById('nome');
 const emailInput = document.getElementById('email');
 const senhaInput = document.getElementById('senha');
 
-// Função de Login
+// Função de Login - CORRIGIDA
 async function login() {
     try {
         const email = document.getElementById('emailLogin')?.value || emailInput?.value;
@@ -34,12 +34,31 @@ async function login() {
             throw new Error(data.message || 'Erro ao fazer login');
         }
 
-        // Salva o token no localStorage
+        // SALVAR DADOS NO LOCALSTORAGE - PARTE IMPORTANTE!
         if (data.token) {
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Salvar dados do usuário
+            if (data.user) {
+                localStorage.setItem('user', JSON.stringify(data.user));
+                // SALVAR SEPARADAMENTE PARA ACESSO FÁCIL
+                localStorage.setItem('userId', data.user.id);
+                localStorage.setItem('userName', data.user.name);
+                localStorage.setItem('userEmail', data.user.email);
+            } else {
+                // Se o backend não retornar user, tentar decodificar do token
+                try {
+                    const tokenParts = data.token.split('.');
+                    const payload = JSON.parse(atob(tokenParts[1]));
+                    localStorage.setItem('userId', payload.id);
+                    localStorage.setItem('userName', payload.name || 'Usuário');
+                    localStorage.setItem('userEmail', payload.email || email);
+                } catch (e) {
+                    console.error('Erro ao decodificar token:', e);
+                }
+            }
+            
             alert('Login realizado com sucesso!');
-            // Redirecionar para página principal
             window.location.href = './dashboard.html';
         } else {
             throw new Error('Token não recebido');
@@ -58,7 +77,6 @@ async function cadastro() {
         const email = emailInput?.value;
         const senha = senhaInput?.value;
 
-        // Validações
         if (!nome || !email || !senha) {
             alert('Preencha todos os campos!');
             return;
@@ -88,12 +106,9 @@ async function cadastro() {
         }
 
         alert('Cadastro realizado com sucesso!');
-        // Limpa os campos
         nomeInput.value = '';
         emailInput.value = '';
         senhaInput.value = '';
-        
-        // Redirecionar para login
         window.location.href = './login.html';
 
     } catch (error) {
@@ -122,9 +137,11 @@ async function authenticatedFetch(url, options = {}) {
     });
 
     if (response.status === 401) {
-        // Token expirado ou inválido
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
         window.location.href = '/login.html';
         throw new Error('Sessão expirada, faça login novamente');
     }
@@ -132,7 +149,7 @@ async function authenticatedFetch(url, options = {}) {
     return response;
 }
 
-// Exemplo de uso: buscar posts (autenticado)
+// Função para listar posts (usando a função autenticada)
 async function listarPosts() {
     try {
         const response = await authenticatedFetch('/posts');
@@ -145,10 +162,13 @@ async function listarPosts() {
     }
 }
 
-// Função para fazer logout
+// Função para fazer logout - CORRIGIDA
 function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
     window.location.href = '/login.html';
 }
 
@@ -157,10 +177,23 @@ function isAuthenticated() {
     return !!localStorage.getItem('token');
 }
 
+// Função para obter o userId
+function getUserId() {
+    return localStorage.getItem('userId');
+}
+
+// Função para obter o nome do usuário
+function getUserName() {
+    return localStorage.getItem('userName') || 'Usuário';
+}
+
 // Para uso direto no HTML (script tag)
 if (typeof window !== 'undefined') {
     window.login = login;
     window.cadastro = cadastro;
     window.logout = logout;
     window.isAuthenticated = isAuthenticated;
+    window.getUserId = getUserId;
+    window.getUserName = getUserName;
+    window.listarPosts = listarPosts;
 }
