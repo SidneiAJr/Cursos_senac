@@ -15,6 +15,6 @@ const styles = StyleSheet.create({
     titulo:{
         fontSize: 50,
         fontWeight: 'bold',
-        color: 'black'
+        color: 'white'
     }
 })

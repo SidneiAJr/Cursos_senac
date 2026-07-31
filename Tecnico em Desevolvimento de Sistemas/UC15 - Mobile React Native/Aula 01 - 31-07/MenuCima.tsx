@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   menu: {
     width: '100%',
     height: 80,
-    backgroundColor: '#2563EB',
+    backgroundColor: 'transparent',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

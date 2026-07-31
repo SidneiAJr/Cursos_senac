@@ -4,22 +4,25 @@ import Botao from './botao';
 import Titulo from './texto'
 import Imagem from './imagem'
 import Menu from './MenuCima'
+import Fundo from './fundo'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-       <Menu/>
-      <Imagem/>
-      <Titulo/>
-      <Botao/>
-    </View>
+    <Fundo>
+      <View style={styles.container}>
+        <Menu />
+        <Imagem />
+        <Titulo />
+        <Botao />
+      </View>
+    </Fundo>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#866e74ff',
+     backgroundColor: 'transparent',
     alignItems: 'center',
      justifyContent: 'flex-start',
   },

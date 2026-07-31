@@ -5,7 +5,7 @@ const imagem = () => {
   return (
     <View>
       <Image
-  source={{ uri: 'https://picsum.photos/200' }}
+  source={{ uri: 'https://i.redd.it/q027jd5j84y61.gif' }}
   style={styles.img }
 />
     </View>
