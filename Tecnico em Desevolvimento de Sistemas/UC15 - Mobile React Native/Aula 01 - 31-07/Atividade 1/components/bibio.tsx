@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: 30,
-    color: 'white'
+    color: 'white',
+    fontStyle: 'italic'
     },
     textbio:{
     textAlign: 'center',

@@ -4,7 +4,7 @@ import React from 'react'
 const nome = () => {
   return (
     <View>
-      <Text style={styles.texto}>Dalvano Silva</Text>
+      <Text style={styles.texto}>Primaveira Silveira Jr</Text>
     </View>
   )
 }
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
    texto:{
     textAlign: 'center',
     justifyContent: 'center',
-    fontSize: 30,
-    color: 'white'
+    fontSize: 40,
+    color: 'black',
+    fontWeight: '900'
    }
 })

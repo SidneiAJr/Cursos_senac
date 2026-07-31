@@ -5,11 +5,11 @@ const Logo = () => {
   return (
     <View style={styles.containerLogo}>
       <Image
-        source={{ uri: 'https://cdn.mos.cms.futurecdn.net/v2/t:0,l:160,cw:960,ch:720,q:80,w:960/FaWKMJQnr2PFcYCmEyfiTm.jpg' }}
+        source={{ uri: 'https://img.icons8.com/ios/50/home--v1.png' }}
         style={styles.foto}
         resizeMode="contain"
       />
-      <Text style={styles.texto}>Ola</Text>
+      <Text style={styles.texto}>Home</Text>
     </View>
   )
 }
