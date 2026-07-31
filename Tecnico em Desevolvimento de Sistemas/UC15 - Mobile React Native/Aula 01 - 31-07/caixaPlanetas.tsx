@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.24)',
     width: 350,
     height: 300,
-    borderRadius: 30
+    borderRadius: 30,
+    elevation: 25,
   },
   planeta2:{
     fontSize: 30,

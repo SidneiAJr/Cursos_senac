@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import Botao from './botao';
 import Titulo from './texto'
 import Imagem from './imagem'
@@ -10,14 +10,16 @@ import Caixa from './caixaPlanetas'
 
 export default function App() {
   return (
+    <SafeAreaProvider>
     <Fundo>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Menu />
         <Imagem />
         <Titulo />
         <Caixa/>
-      </View>
+      </SafeAreaView>
     </Fundo>
+    </SafeAreaProvider>
   );
 }
 
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
      backgroundColor: 'transparent',
-    alignItems: 'center',
+     alignItems: 'center',
      justifyContent: 'flex-start',
   },
 });

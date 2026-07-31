@@ -17,13 +17,14 @@ const styles = StyleSheet.create({
   menu: {
     width: '100%',
     height: 80,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingTop: 0,
     marginTop: 0,
-    marginBottom: 20// pode ajustar conforme necessário
+    marginBottom: 20,
+    borderRadius: 20// pode ajustar conforme necessário
   },
   item: {
     color: 'white',
