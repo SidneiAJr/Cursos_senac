@@ -5,6 +5,8 @@ import Titulo from './texto'
 import Imagem from './imagem'
 import Menu from './MenuCima'
 import Fundo from './fundo'
+import Input from './input'
+import Caixa from './caixaPlanetas'
 
 export default function App() {
   return (
@@ -13,7 +15,7 @@ export default function App() {
         <Menu />
         <Imagem />
         <Titulo />
-        <Botao />
+        <Caixa/>
       </View>
     </Fundo>
   );

@@ -4,7 +4,9 @@ import React from 'react'
 const texto = () => {
   return (
     <View>
-      <Text style={styles.titulo}>Texto Aqui!</Text>
+      <Text style={styles.titulo}>
+         Hello Word
+        </Text>
     </View>
   )
 }
