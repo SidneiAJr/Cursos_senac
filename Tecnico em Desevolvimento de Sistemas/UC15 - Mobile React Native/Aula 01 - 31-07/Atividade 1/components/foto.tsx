@@ -5,7 +5,7 @@ const foto = () => {
   return (
     <View>
       <Image
-      source={{ uri: 'https://img.icons8.com/ios/50/user--v1.png' }}
+      source={{ uri: 'https://img.icons8.com/color/48/old-woman-skin-type-6.png' }}
       style={styles.foto}
       resizeMode="cover"
     />

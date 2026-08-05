@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Pressable } from 'react-native';
+import { StyleSheet, Text, Pressable,Image } from 'react-native';
 import React from 'react';
 
 const Botao = () => {
@@ -8,6 +8,11 @@ const Botao = () => {
       onPress={() => alert('Seguindo...')}
     >
       <Text style={styles.texto}>Seguir</Text>
+      <Image
+              source={{ uri: 'https://img.icons8.com/ios/50/add-user-male.png' }}
+              style={styles.foto}
+              resizeMode="contain"
+            />
     </Pressable>
   );
 };
@@ -18,7 +23,7 @@ const styles = StyleSheet.create({
   botao: {
     width: 200,
     height: 55,
-    backgroundColor: 'rgba(255,255,255,0.25)',
+    backgroundColor: 'rgba(255, 255, 255, 0.48)',
     borderRadius: 30,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.5)',
@@ -43,4 +48,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  foto:{
+    width: 20,
+    height: 20
+  }
 });

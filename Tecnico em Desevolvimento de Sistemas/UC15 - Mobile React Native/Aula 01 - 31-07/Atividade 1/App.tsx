@@ -6,20 +6,20 @@ import Fundo from './components/fundo'
 import Bibio from './components/bibio'
 import Foto from './components/foto'
 import Botao from './components/botao'
+import Card from './components/card'
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <Fundo>
         <SafeAreaView style={styles.container}>
-
           <Logo />
-
+         <Card>
           <Foto/>
           <Nome/>
           <Bibio/>
           <Botao/>
-
+         </Card>
         </SafeAreaView>
       </Fundo>
     </SafeAreaProvider>
