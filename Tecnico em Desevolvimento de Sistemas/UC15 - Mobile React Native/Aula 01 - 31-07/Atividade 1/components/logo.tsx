@@ -5,11 +5,11 @@ const Logo = () => {
   return (
     <View style={styles.containerLogo}>
       <Image
-        source={{ uri: 'https://img.icons8.com/ios/50/home--v1.png' }}
+        source={{ uri: 'https://down-br.img.susercontent.com/file/6f45f093e0743ea4733eb76c9611431e' }}
         style={styles.foto}
         resizeMode="contain"
       />
-      <Text style={styles.texto}>Home</Text>
+      <Text style={styles.texto}>Ola</Text>
     </View>
   )
 }
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     left: 20,
+    elevation: 5
   },
 
   foto:{

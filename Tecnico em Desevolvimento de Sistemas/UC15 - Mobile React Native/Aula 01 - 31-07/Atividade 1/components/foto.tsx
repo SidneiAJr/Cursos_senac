@@ -5,7 +5,7 @@ const foto = () => {
   return (
     <View>
       <Image
-      source={{ uri: 'https://img.icons8.com/color/48/old-woman-skin-type-6.png' }}
+      source={{ uri: 'https://down-br.img.susercontent.com/file/6f45f093e0743ea4733eb76c9611431e' }}
       style={styles.foto}
       resizeMode="cover"
     />
@@ -17,8 +17,8 @@ export default foto
 
 const styles = StyleSheet.create({
 foto:{
-    height: 80,
-    width: 80,
+    height: 150,
+    width: 150,
     borderRadius: 50,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderWidth: 2,

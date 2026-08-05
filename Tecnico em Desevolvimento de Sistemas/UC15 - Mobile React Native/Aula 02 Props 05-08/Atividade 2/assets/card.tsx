@@ -21,7 +21,7 @@ export default Card;
 
 const styles = StyleSheet.create({
   card: {
-    height: 490,
+    height: 600,
     width: 450,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,11 +1,10 @@
 import { StyleSheet, ImageBackground } from 'react-native';
-import React from 'react';
 
-const Fundo = ({ children }) => {
+const Startrek = ({ children }) => {
   return (
     <ImageBackground
       source={{
-        uri: 'https://down-br.img.susercontent.com/file/6f45f093e0743ea4733eb76c9611431e'
+        uri: 'https://img.magnific.com/fotos-gratis/nascer-do-sol-sobre-as-montanhas_23-2152014214.jpg?semt=ais_test_b&w=740&q=80',
       }}
       style={styles.foto}
       resizeMode="cover"
@@ -15,12 +14,10 @@ const Fundo = ({ children }) => {
   );
 };
 
-export default Fundo;
+export default Startrek
 
 const styles = StyleSheet.create({
   foto: {
     flex: 1,
-    width: '100%',
-    height: '100%',
   },
 });

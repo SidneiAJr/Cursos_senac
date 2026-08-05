@@ -1,25 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View } from 'react-native';
+import React from 'react';
 
-const card = ({ children }) => {
+const Card = ({ children }) => {
   return (
     <View style={styles.card}>
-    {children}
+      {children}
     </View>
-  )
-}
+  );
+};
 
-export default card
+export default Card;
 
 const styles = StyleSheet.create({
-    card:{
-     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-     height: 500,
-     width: 400,
-     display: 'flex',
-     justifyContent: 'center',
-     textAlign: 'center',
-     alignItems: 'center',
-     borderRadius: 30,
-    }
-})
+  card: {
+    width: 430,
+    height: 650,
+    backgroundColor: 'white',
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5
+  },
+});
