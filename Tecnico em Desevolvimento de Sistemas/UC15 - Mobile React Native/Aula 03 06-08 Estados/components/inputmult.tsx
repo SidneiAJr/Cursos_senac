@@ -33,7 +33,10 @@ export default inputmult
 const styles = StyleSheet.create({
     container: { 
     gap: 10,
-    marginTop: 20
+    marginTop: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.39)' ,
+    borderRadius: 10, 
+    height: 150,
     },
   input: {
     borderWidth: 4,

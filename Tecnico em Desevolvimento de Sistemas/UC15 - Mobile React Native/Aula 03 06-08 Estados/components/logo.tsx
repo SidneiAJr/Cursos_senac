@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center', // centro vertical
     alignItems: 'center',
-    marginTop: 55     // centro horizontal
+    marginTop: 55, 
+    backgroundColor: 'rgba(255, 255, 255, 0.39)' ,
+    borderRadius: 50   // centro horizontal
   },
   foto: {
     width: 150,

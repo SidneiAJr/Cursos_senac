@@ -34,7 +34,10 @@ export default inputNumero
 const styles = StyleSheet.create({
     container: { 
     gap: 5,
-    marginTop: 5
+    marginTop: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.39)' ,
+    borderRadius: 10, 
+    height: 150,
 
     },
   input: {

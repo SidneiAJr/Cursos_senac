@@ -1,6 +1,7 @@
 import { StyleSheet, ImageBackground } from 'react-native';
 import React from 'react';
 
+
 const Fundo = ({ children }:any) => {
   return (
     <ImageBackground
