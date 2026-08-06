@@ -14,6 +14,7 @@ export default function TelaInicial({ navigation }: any) {
         <TouchableOpacity onPress={() => navigation.navigate('Contador')}>
           <Text style={styles.botao}>Contador</Text>
         </TouchableOpacity>
+
       </View>
     </Fundo>
   );
