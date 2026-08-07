@@ -5,7 +5,6 @@ const contador = () => {
    
    const [contar,setcontar]= useState<number>(0)
 
-
   return (
     <View style={styles.container}>
          <Text style={styles.numero}>Contador:{contar}</Text>
@@ -35,22 +34,25 @@ export default contador
 
 const styles = StyleSheet.create({
     container:{
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
    alignItems: 'center',
    justifyContent: 'center',
    gap: 5,
+   backgroundColor: 'rgba(255, 255, 255, 0.31)',
+   borderRadius: 20
     },
     botaomenos: {
-    width: 40,
-    height: 40,
+    width: 100,
+    height: 100,
     borderRadius: 20,
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
   },
    botaomais: {
-    width: 40,
-    height: 40,
+    width: 100,
+    height: 100,
     borderRadius: 20,
     backgroundColor: 'blue',
     alignItems: 'center',
@@ -66,8 +68,8 @@ numero:{
     color: 'white'
 },
 botaolimpa:{
-width: 40,
-    height: 40,
+width: 100,
+    height: 100,
     borderRadius: 20,
     backgroundColor: 'yellow',
     alignItems: 'center',

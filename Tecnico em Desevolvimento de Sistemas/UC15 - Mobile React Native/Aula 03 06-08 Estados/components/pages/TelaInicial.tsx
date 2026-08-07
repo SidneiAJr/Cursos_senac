@@ -3,7 +3,7 @@ import Fundo from '../Fundo';
 
 export default function TelaInicial({ navigation }: any) {
   return (
-    <Fundo img="https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/1095.adapt_.1900.1.jpg?w=1900&h=1425">
+    <Fundo img="https://i.pinimg.com/originals/59/69/84/59698460a33a71e42ddf46e185e17737.gif">
       <View style={styles.container}>
         <Text style={styles.titulo}>Tela Inicial | Bem Vindo!</Text>
 
@@ -13,6 +13,14 @@ export default function TelaInicial({ navigation }: any) {
 
         <TouchableOpacity onPress={() => navigation.navigate('Contador')}>
           <Text style={styles.botao}>Contador</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('API')}>
+          <Text style={styles.botao}>API</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('teste')}>
+          <Text style={styles.botao}>Input Teste</Text>
         </TouchableOpacity>
 
       </View>

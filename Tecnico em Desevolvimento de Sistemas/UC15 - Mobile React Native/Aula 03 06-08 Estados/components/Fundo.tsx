@@ -5,7 +5,7 @@ import React from 'react';
 const Fundo = ({ children }:any) => {
   return (
     <ImageBackground
-      source={{ uri: 'https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/1095.adapt_.1900.1.jpg?w=1900&h=1425' }}
+      source={{ uri: 'https://i.pinimg.com/originals/c2/a2/94/c2a294bf7bc34c5f854ec62cd0740df0.gif' }}
       style={styles.fundo}
       resizeMode="cover"
     >
