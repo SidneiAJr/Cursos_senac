@@ -4,6 +4,7 @@ import React,{useState} from 'react';
 import Lista from '../lista';
 import TelaRelogoio from '../Relogoio';
 import InputRe from '../inputRe';
+import Logo from '../logo';
 
 const usuarios = [
    {id: 1, nome: 'Tenis 1', preco: 100, imagem: 'https://images.tcdn.com.br/img/img_prod/1317970/tenis_olympikus_esportivo_dynamic_texturizado_masculino_preto_laranja_18243_1_27a5a6453ef9907c54ad943c860ef459.jpg'},
@@ -29,6 +30,10 @@ const TelaLista = () => {
         <Text style={styles.nome}>{item.nome}</Text>
         <Text style={styles.preco}>💵R$ {item.preco},00</Text>
       </View>
+      <View style={styles.box}>
+        <Logo width={25} height={25} url='https://img.icons8.com/ios/50/shopping-cart--v1.png' resizeMode='cover'/>
+        <Logo width={25} height={25} url='https://img.icons8.com/material-outlined/24/broom.png' resizeMode='cover'/>
+      </View>
     </View>
   );
 
@@ -37,7 +42,7 @@ const TelaLista = () => {
         <View>
         <InputRe largura={400} altura={50} cor='black' texto='Procurar' bordaCor='black' bordaEspessura={2} bordaRedonda={5} onChangeText={setBusca} value={busca} />
         <TelaRelogoio alinhamento='center' tamanho={20} color='black' peso='900' borderRadius={25}/>
-         <Text style={styles.Texto}>Itens | Venda</Text>
+        <Text style={styles.Texto}>Itens | Venda</Text>
         <Lista 
         dados={usuariosFiltrados}
         renderItem={renderizarItem} 
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
   },
   nome: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 900
   },
   id: {
     fontSize: 12,
@@ -91,5 +96,13 @@ const styles = StyleSheet.create({
   },
   preco:{
     fontSize: 20,
-  }
+    fontWeight:900
+  },
+  box:{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 5
+  },
 });
