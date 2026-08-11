@@ -21,7 +21,7 @@ export interface Texto{
     children?: React.ReactNode;
     peso?: 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
     alinhamento?: 'auto' | 'left' | 'right' | 'center' | 'justify';
-     borderRadius: number;
+    borderRadius: number;
 }
 
 export interface listaUniversal<T = any> {
@@ -33,4 +33,16 @@ export interface listaUniversal<T = any> {
     separador?: () => React.ReactElement;
     vazio?: () => React.ReactElement;
     estilo?: object;
+}
+
+export interface Input {
+  cor: string
+  texto: string
+  bordaCor: string
+  bordaRedonda: number
+  bordaEspessura: number
+  largura: number
+  altura: number
+  onChangeText: (texto: string) => void
+  value: string
 }
