@@ -5,7 +5,6 @@ import Lista from '../lista';
 import TelaRelogoio from '../Relogoio';
 import InputRe from '../inputRe';
 import Logo from '../logo';
-import lista from '../lista';
 
 const usuarios = [
   {

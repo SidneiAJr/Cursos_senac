@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View,FlatList,Image,TextInput,TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import ModalLista from './ModalLista'
 
 const listaapi = ()=>{
     const [pokemons, setpokemons] = useState([])
     const [carregando,setcarregando]=useState(true)
     const [busca,setbusca]=useState('')
+    const [pokemonSelecionado, setPokemonSelecionado] = useState<any>(null)
+    const [modalAberto, setModalAberto] = useState(false)
+    const [pokemonDetalhes, setPokemonDetalhes] = useState<any>(null)
 
       const filtrados = pokemons.filter((item: any) =>
   item.name.includes(busca.toLowerCase())
@@ -32,7 +36,16 @@ return (
     data={filtrados}
       keyExtractor={(item: any) => item.name}
         renderItem={({ item, index }: any) => (
-            <TouchableOpacity onPress={() => alert(`Nome: ${item.name} `)}>
+            <TouchableOpacity  onPress={ async() => {
+    setPokemonSelecionado(item)
+    setModalAberto(true)
+    try {
+      const resposta = await axios.get(item.url)
+      setPokemonDetalhes(resposta.data)
+    } catch (error) {
+      console.log('Erro ao buscar detalhes:', error)
+    }
+  }}>
           <View style={styles.card}>
             <Image
               style={styles.imagem}
@@ -43,6 +56,20 @@ return (
           </TouchableOpacity>
         )}
       />
+      <ModalLista
+  visivel={modalAberto}
+  tamanho={30}
+  lista={pokemonSelecionado?.name ?? ''}
+  corfundo="#fff"
+  fonte="System"
+  grossuraFonte="bold"
+  cor="#222"
+  fechar={() => {
+    setModalAberto(false)
+    setPokemonDetalhes(null)
+  }}
+  pokemon={pokemonDetalhes}
+/>
       </View>
   )
 }

@@ -46,3 +46,15 @@ export interface Input {
   onChangeText: (texto: string) => void
   value: string
 }
+
+export interface ModalBase {
+  visivel: boolean
+  fechar: () => void
+  tamanho: number
+  lista: string
+  corfundo: string
+  fonte: string
+  grossuraFonte: string
+  cor: string
+  pokemon: any
+}
