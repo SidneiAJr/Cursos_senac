@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Inicio">
-        <Stack.Screen name="Inicio" component={TelaInicial} />
+        <Stack.Screen name="Inicio" component={TelaInicial} options={{headerShown: false}} />
         <Stack.Screen name="Calculadora" component={TelaCalculadora} />
         <Stack.Screen name="Contador" component={TelaContador} />
         <Stack.Screen name="API" component={TelaAPi} />

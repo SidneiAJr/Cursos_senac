@@ -1,26 +1,41 @@
-import { StyleSheet, Text, View,FlatList } from 'react-native'
-import React from 'react'
-import { listaUniversal } from '../hooks/components'
+import { StyleSheet, FlatList } from 'react-native';
+import React from 'react';
+import { listaUniversal } from '../hooks/components';
 
-const lista =<T=any> ({dados,renderItem,keyExtractor,horizontal,numColumns,separador,vazio,estilo}:listaUniversal <T>) => {
+const Lista = <T = any>({
+  dados,
+  renderItem,
+  keyExtractor,
+  horizontal,
+  numColumns,
+  separador,
+  vazio,
+  estilo,
+}: listaUniversal<T>) => {
   return (
     <FlatList
-            data={dados}
-            renderItem={({ item, index }) => renderItem(item, index)}
-            keyExtractor={keyExtractor || ((item: any, index) => String(item.id || index))}
-            horizontal={horizontal}
-            numColumns={numColumns}
-            ItemSeparatorComponent={separador}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={[styles.lista, estilo]}
-            key={numColumns}
-        />
-  )
-}
+      data={dados}
+      renderItem={({ item, index }) => renderItem(item, index)}
+      keyExtractor={
+        keyExtractor ||
+        ((item: any, index) => String(item.id || index))
+      }
+      horizontal={horizontal}
+      numColumns={numColumns}
+      ItemSeparatorComponent={separador}
+      ListEmptyComponent={vazio}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={true}
+      style={estilo}
+      contentContainerStyle={styles.lista}
+    />
+  );
+};
 
-export default lista
+export default Lista;
 
 const styles = StyleSheet.create({
-    lista:{}
-})
+  lista: {
+    paddingBottom: 20,
+  },
+});

@@ -25,14 +25,14 @@ export interface Texto{
 }
 
 export interface listaUniversal<T = any> {
-    dados: T[];
-    renderItem?: (item: T, index: number) => React.ReactElement; // ← Adicionei ? aqui
-    keyExtractor?: (item: T, index: number) => string;
-    horizontal?: boolean;
-    numColumns?: number;
-    separador?: () => React.ReactElement;
-    vazio?: () => React.ReactElement;
-    estilo?: object;
+  dados: T[];
+  renderItem: (item: T, index: number) => React.ReactElement;
+  keyExtractor?: (item: T, index: number) => string;
+  horizontal?: boolean;
+  numColumns?: number;
+  separador?: () => React.ReactElement;
+  vazio?: () => React.ReactElement;
+  estilo?: object;
 }
 
 export interface Input {
