@@ -1,6 +1,6 @@
 export interface Lista {
   tamanho: number;
-  data: any[];                    
+  data?: any[];                    
   keyExtractor?: (item: any) => string;
   renderItem?: (item: any) => React.ReactElement;
   horizontal?: boolean;
@@ -8,10 +8,12 @@ export interface Lista {
 }
 
 export interface Imagem {
-  tamanho: number;
-  uri: string;// tipagem mais segura que `any`
-  resizeMode?: 'cover' | 'contain' | 'stretch' | 'center';
-  borderRadius?: number;
+  uri: string
+  tamanho?: number
+  largura?: number
+  altura?: number
+  resizeMode?: 'cover' | 'contain' | 'stretch' | 'center'
+  borderRadius?: number
 }
 
 export interface Texto {

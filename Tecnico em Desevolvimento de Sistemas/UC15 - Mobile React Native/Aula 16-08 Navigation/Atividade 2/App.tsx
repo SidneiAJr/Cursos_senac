@@ -2,13 +2,23 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import TelaPerfil from './components/screen/TelaPerfil'
 import TelaGeral from './components/screen/TelaGeral'
 import TelaFavoritos from './components/screen/TelaFavoritos'
+import TelaMais from './components/screen/TelaMais'
 
 const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
+
+const GeralStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="TelaGeral" component={TelaGeral} />
+    <Stack.Screen name="TelaMais" component={TelaMais} />
+  </Stack.Navigator>
+)
 
 export default function App() {
   return (
@@ -22,7 +32,7 @@ export default function App() {
       >
         <Tab.Screen
           name="Geral"
-          component={TelaGeral}
+          component={GeralStack}
           options={{
             tabBarIcon: ({ color, size }) => (
               <Ionicons
