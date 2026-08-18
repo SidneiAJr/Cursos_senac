@@ -7,7 +7,7 @@ export default function TelaInicial({ navigation }: any) {
       <View style={styles.container}>
 
         <Text style={styles.titulo}>
-          Tela Inicial | Bem Vindo!
+          Tela Teste 
         </Text>
 
         <View style={styles.botoes}>
