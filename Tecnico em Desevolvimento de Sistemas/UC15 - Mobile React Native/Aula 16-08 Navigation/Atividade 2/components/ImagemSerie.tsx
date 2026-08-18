@@ -1,15 +1,32 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Image, View } from 'react-native'
 import React from 'react'
-import { Lista } from '../hooks/Components'
 
-const ImagemSerie = () => {
+interface ImagemSerieProps {
+  image: {
+    medium: string
+    original: string
+  } 
+}
+
+const ImagemSerie = ({ image }: ImagemSerieProps) => {
+  if (!image) return null  
+
   return (
     <View>
-      <Text>ImagemSerie</Text>
+      <Image
+        source={{ uri: image.medium }}
+        style={styles.imagem}
+      />
     </View>
   )
 }
 
 export default ImagemSerie
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  imagem: {
+    width: 150,
+    height: 200,
+    borderRadius: 8,
+  }
+})
