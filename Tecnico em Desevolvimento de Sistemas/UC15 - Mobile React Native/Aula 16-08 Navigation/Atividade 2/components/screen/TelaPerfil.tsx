@@ -7,9 +7,12 @@ const TelaPerfil = () => {
     <View style={styles.container}>
       <View style={styles.fundo}>
        <Logo tamanho={100} uri='https://img.icons8.com/windows/32/administrator-male--v1.png'/>
-      <Text style={styles.texto}>📜Perfil | Conta</Text>
+      <Text style={styles.texto}>Perfil | Conta</Text>
        <Text style={styles.texto2}>Informações:</Text>
-       <Text style={styles.texto3}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, architecto blanditiis. Aliquid earum sit, blanditiis laborum debitis similique vel quae dignissimos? Vel assumenda placeat perspiciatis reiciendis ratione sed doloremque iusto.</Text>
+       <Text style={styles.texto3}>✉️Email:</Text>
+       <Text style={styles.texto3}>📅 Conta criada em:</Text>
+      <Text style={styles.texto3}>⚙️ Configurações da conta</Text>
+       <Text style={styles.texto3}>🌙 Tema</Text>
       </View>
     </View>
   )
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   texto:{
-    marginTop:35,
+    marginTop:5,
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   texto2:{
-    marginTop:5,
+    marginTop:2,
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -47,11 +50,11 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   texto3:{
-    marginTop:5,
+    marginTop:2,
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: 900,
     color: 'white'
   }
