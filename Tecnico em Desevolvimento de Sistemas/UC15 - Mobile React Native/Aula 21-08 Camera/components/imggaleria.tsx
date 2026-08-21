@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity,Image,FlatList } from 'react-native'
 import React,{useState,useRef} from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import { CameraView, useCameraPermissions } from 'expo-camera'
@@ -6,6 +6,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera'
 const ImgGaleria = () => {
 
     const [foto, setFoto] = useState<string | null>(null)
+    const [fotos, setFotos] = useState<string[]>([])
     const cameraRef = useRef<CameraView>(null)
     const [permissao, pedirPermissao] = useCameraPermissions()
 
@@ -28,28 +29,41 @@ const ImgGaleria = () => {
   const escolherDaGaleria = async () => {
     const resultado = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
-      allowsEditing: true,
+      allowsMultipleSelection: true,
+      selectionLimit: 20,
       aspect: [1, 1],
-      quality: 5.0,
+      quality: 1,
     })
 
     if (!resultado.canceled) {
-      setFoto(resultado.assets[0].uri)
+        const uris = resultado.assets.map((item)=>item.uri)
+      setFotos(uris)
     }
   }
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.botao} onPress={escolherDaGaleria}>
-        <Text style={styles.botaoTexto}>Escolher da galeria</Text>
-      </TouchableOpacity>
-      {foto && <Image source={{ uri: foto }} style={styles.preview} />}
-      <CameraView ref={cameraRef} style={styles.camera} facing="back" />
-      <TouchableOpacity style={styles.botao} onPress={tirarFoto}>
-        <Text style={styles.botaoTexto}>Capturar</Text>
-      </TouchableOpacity>
-    </View>
-  )
+return (
+  <View style={styles.container}>
+    <TouchableOpacity style={styles.botao} onPress={escolherDaGaleria}>
+      <Text style={styles.botaoTexto}>Escolher da galeria</Text>
+    </TouchableOpacity>
+
+    {fotos.length > 0 && <FlatList
+      data={fotos}
+      keyExtractor={(item) => item}
+      horizontal
+      style={styles.flatlist}
+      renderItem={({ item }) => (
+        <Image source={{ uri: item }} style={styles.preview} />
+      )}
+    />
+}
+    <CameraView ref={cameraRef} style={styles.camera} facing="back" />
+
+    <TouchableOpacity style={styles.botao} onPress={tirarFoto}>
+      <Text style={styles.botaoTexto}>Capturar</Text>
+    </TouchableOpacity>
+  </View>
+)
 }
 
 export default ImgGaleria
@@ -59,5 +73,6 @@ const styles = StyleSheet.create({
   botao: { backgroundColor: '#4ade9e', padding: 12, borderRadius: 10 },
   botaoTexto: { fontWeight: 'bold' },
   preview: { width: 200, height: 200, borderRadius: 12 },
-  camera: { flex: 1, width: '100%' }, // ← width: '100%' também
+  camera: { flex: 1, width: '100%' },
+  flatlist: { height: 200, flexGrow: 0 },  // ← flexGrow: 0 impede a câmera de engolir
 })
