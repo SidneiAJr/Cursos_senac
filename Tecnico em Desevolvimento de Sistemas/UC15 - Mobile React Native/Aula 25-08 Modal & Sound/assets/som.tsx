@@ -23,7 +23,7 @@ export default function som() {
 
     return (
         <View style={styles.container}>
-              <Image source={{ uri: 'https://www.aosindico.com/storage/posts/456456_11022020005527.png' }} style={{ width: 600, height: 600 }} />
+              <Image source={{ uri: '' }} style={{ width: 600, height: 600 }} />
               <TouchableOpacity onPress={trocar} style={styles.botao}>
     <Text style={styles.texto}>▶ Tocar</Text>
   </TouchableOpacity>
@@ -38,7 +38,7 @@ export default function som() {
          <TouchableOpacity onPress={() => setVisivel(false)} style={styles.botao}>
         <Text style={styles.texto}>Fechar</Text>
       </TouchableOpacity>
-        <Image source={{ uri: 'https://i.pinimg.com/originals/2b/41/d3/2b41d3a516534d0116ea1655f96a7174.gif' }} style={{ width: 200, height: 200 , borderRadius: 50}} />
+        <Image source={{ uri: '' }} style={{ width: 200, height: 200 , borderRadius: 50}} />
       <Text style={styles.texto2}>Modal</Text>
       <TouchableOpacity onPress={troca2} style={styles.botao}>
     <Text style={styles.texto}>▶ Tocar</Text>
