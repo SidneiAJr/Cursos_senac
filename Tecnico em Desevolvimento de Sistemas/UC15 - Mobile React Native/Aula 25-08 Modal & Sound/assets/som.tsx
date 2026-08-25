@@ -22,20 +22,26 @@ export default function som() {
   </TouchableOpacity>
   <Modal
   visible={visivel}
-  animationType="slide"
+  animationType="none"
   transparent={true}
   onRequestClose={() => setVisivel(false)}
 >
   <View style={styles.modalFundo}>
     <View style={styles.modalCaixa}>
-      <Text>Modal</Text>
-       <Text>Modal</Text>
-        <Text>Modal</Text>
-         <Text>Modal</Text>
-          <Text>Modal</Text>
-      <TouchableOpacity onPress={() => setVisivel(false)} style={styles.botao}>
+         <TouchableOpacity onPress={() => setVisivel(false)} style={styles.botao}>
         <Text style={styles.texto}>Fechar</Text>
       </TouchableOpacity>
+        <Image source={{ uri: 'https://www.aosindico.com/storage/posts/456456_11022020005527.png' }} style={{ width: 200, height: 200 }} />
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <Text style={styles.texto2}>Modal</Text>
+      <TouchableOpacity onPress={trocar} style={styles.botao}>
+    <Text style={styles.texto}>▶ Tocar</Text>
+  </TouchableOpacity>
     </View>
   </View>
 </Modal>
@@ -64,6 +70,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  texto2: {
+    color: 'black',
+    fontSize: 35,
+    fontWeight: 900,
   },
   modalFundo: {
   flex: 1,
