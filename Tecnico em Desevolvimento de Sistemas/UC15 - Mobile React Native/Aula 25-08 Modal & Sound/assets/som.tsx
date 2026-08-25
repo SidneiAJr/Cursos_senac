@@ -7,11 +7,18 @@ export default function som() {
     const [visivel, setVisivel] = useState<boolean>(false)
     
     const player = useAudioPlayer(require('../assets/windows.mp3'))
+    const player2 = useAudioPlayer(require('../assets/cassinao.mp3'))
 
     const trocar = () =>{
         player.seekTo(0)
         player.play()
         player.volume = 1.0
+    }
+
+    const troca2 = () =>{
+        player2.seekTo(0)
+        player2.play()
+        player2.volume = 1.0
     }
 
     return (
@@ -31,15 +38,9 @@ export default function som() {
          <TouchableOpacity onPress={() => setVisivel(false)} style={styles.botao}>
         <Text style={styles.texto}>Fechar</Text>
       </TouchableOpacity>
-        <Image source={{ uri: 'https://www.aosindico.com/storage/posts/456456_11022020005527.png' }} style={{ width: 200, height: 200 }} />
+        <Image source={{ uri: 'https://i.pinimg.com/originals/2b/41/d3/2b41d3a516534d0116ea1655f96a7174.gif' }} style={{ width: 200, height: 200 , borderRadius: 50}} />
       <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <Text style={styles.texto2}>Modal</Text>
-      <TouchableOpacity onPress={trocar} style={styles.botao}>
+      <TouchableOpacity onPress={troca2} style={styles.botao}>
     <Text style={styles.texto}>▶ Tocar</Text>
   </TouchableOpacity>
     </View>
