@@ -42,7 +42,7 @@ export default function geolocal() {
       }}
     >
       {pins.map((pin, index) => (
-        <Marker key={index} coordinate={pin} title={`pin ${index + 1}`} />
+        <Marker key={index} coordinate={pin} title={`pin ${index + 1}`} description={`Ponto: ${index+1}`} />
     ))}
       <Marker
         coordinate={{ latitude: regiao.latitude, longitude: regiao.longitude }}
